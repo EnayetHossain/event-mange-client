@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1em 0em;
+    position: relative;
 }
 
 .logo {
@@ -21,6 +22,7 @@
 .ham-bar {
     cursor: pointer;
     padding: 0.5em;
+    z-index: 2;
     /* background-color: green; */
 }
 
@@ -49,6 +51,7 @@
 
 .bar-active {
     transform: rotateZ(-45deg);
+    background-color: rgb(var(--primary-color)) !important;
 }
 
 .bar-active::after {
@@ -56,4 +59,43 @@
     top: 50% !important;
     right: 0 !important;
     transform: rotateZ(90deg);
+    background-color: rgb(var(--primary-color)) !important;
+}
+
+.main-menu {
+    background-color: rgb(var(--accent-color));
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    width: min(36rem, 100%);
+    transition: 0.5s;
+    clip-path: polygon(100% 0, 100% 0%, 100% 100%, 100% 100%);
+    overflow: hidden;
+}
+
+.main-menu-active {
+    clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+}
+
+.menu-items {
+    list-style-type: none;
+    padding: 1em 0;
+}
+
+.menu-item {
+    padding: 0.5em;
+    margin: 0.5em 0;
+    transform: translateX(50%);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.menu-item-active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.menu-item a {
+    font-size: 2.1rem;
+    color: rgb(var(--primary-color));
 }

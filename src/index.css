@@ -13,6 +13,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  /* outline: 1px solid red; */
 }
 
 html {
@@ -28,6 +29,10 @@ body {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
 }
 
 p,
@@ -46,4 +51,8 @@ code {
 .desktop-max {
   max-width: 1280px;
   margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
 }

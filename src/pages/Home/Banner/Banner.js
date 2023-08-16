@@ -1,10 +1,11 @@
 import React from 'react';
+import "./Banner.css";
 
 const Banner = () => {
     return (
-        <div>
+        <header className='banner-container'>
             <h1>banner here</h1>
-        </div>
+        </header>
     );
 };
 
