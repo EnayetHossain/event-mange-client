@@ -4,7 +4,13 @@ import "./Banner.css";
 const Banner = () => {
     return (
         <header className='banner-container'>
-            <h1>banner here</h1>
+            {/* <Navbar></Navbar> */}
+            
+            <div className='hero-text-container'>
+                <h1 className='hero-title'>Exclusive<br />events<br />priceless<br />memories</h1>
+                <button className='btn hero-cta'>Schedule Now</button>
+            </div>
+            
         </header>
     );
 };

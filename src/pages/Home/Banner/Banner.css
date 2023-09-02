@@ -1,3 +1,52 @@
 .banner-container {
-    /* background-color: red; */
+    position: relative;
+    padding: 10em 0;
+}
+
+.banner-container::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url("../../../assets/ccchaos.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.hero-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-title {
+    font-size: clamp(4rem, 5vw, 7rem);
+    text-align: center;
+    line-height: 1.4;
+    font-weight: lighter;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    font-size: 1.8rem;
+    font-weight: 600;
+    background-color: rgb(var(--accent-color));
+    padding: 0.5em 1em;
+    color: rgb(var(--primary-color));
+    cursor: pointer;
+}
+
+.hero-cta {
+    margin-top: 1.2em;
+    border-top-right-radius: var(--btn-border-radius);
+    border-bottom-right-radius: var(--btn-border-radius);
+    border-bottom-left-radius: var(--btn-border-radius);
+    padding: 0.5em 1.2em;
 }
