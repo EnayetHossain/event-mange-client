@@ -13,7 +13,7 @@ footer {
 .footer-container {
     border-top: 1px solid rgba(var(--secondary-color), 0.2);
     justify-content: space-between;
-    padding: 1em 0;
+    padding: 1em;
     font-size: 1.8rem;
 }
 

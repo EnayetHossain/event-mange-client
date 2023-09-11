@@ -1,0 +1,4 @@
+.info-container {
+    background-color: rgba(var(--accent-color), 0.07);
+    margin: 10em auto;
+}

@@ -3,7 +3,7 @@ import "./Banner.css";
 
 const Banner = () => {
     return (
-        <header className='banner-container'>
+        <header className='banner-container desktop-max'>
             {/* <Navbar></Navbar> */}
             
             <div className='hero-text-container'>
