@@ -1,4 +1,7 @@
 .info-container {
     background-color: rgba(var(--accent-color), 0.07);
     margin: 10em auto;
+    position: relative;
+    padding: 2em 0;
+    border-radius: 3em;
 }

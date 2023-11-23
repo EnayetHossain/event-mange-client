@@ -9,6 +9,11 @@
     width: min(70em, 100%);
     margin: 0 auto;
     border-radius: 1.1em;
+    /* position: absolute;
+    height: auto;
+    top: -11%;
+    left: 50%;
+    transform: translateX(-50%); */
 }
 
 .achievements-container h4 {
