@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import gsap from 'gsap';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./Navbar.css";
 
@@ -33,6 +34,14 @@ const Navbar = () => {
     menuItems.forEach(item => {
         observer.observe(item);
     });
+
+    useEffect(()=>{
+        gsap.to(".navbar", {
+            y: 0,
+            duration: 0.8
+        });
+
+    }, []);
 
     return (
         <nav className='navbar desktop-max'>

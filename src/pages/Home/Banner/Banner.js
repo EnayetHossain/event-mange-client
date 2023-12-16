@@ -1,19 +1,40 @@
-import React from "react";
+import gsap from "gsap";
+import React, { useEffect } from "react";
+import SplitType from 'split-type';
 import "./Banner.css";
 
 const Banner = () => {
+
+  useEffect(()=>{
+    const text = new SplitType("#hero-text");
+    console.log(text.chars)
+
+    const tl = gsap.timeline();
+    
+    tl.to(".char", {
+      y: 0,
+      opacity: 1,
+      stagger: 0.05,
+      delay: 0.2,
+      duration: 0.1
+    }).to(".hero-cta", {
+      y: 0,
+      opacity: 1,
+      duration: 0.2
+    });
+
+  }, [])
+
   return (
     <header className="desktop-max !p-0 bg-secondary-color relative overflow-hidden header">
       <div className="banner-container desktop-max p-0">
-        <div className="ml-[5rem] py-[17rem] text z-10 relative">
-          <h1 className="banner-title">
+        <div className="ml-4 md:ml-[3rem] py-[17rem] text z-10 relative">
+          <h1 className="banner-title uppercase" id="hero-text">
             Exclusive
-            <br />
             events priceless
-            <br />
             memories
           </h1>
-          <button className="mt-10 py-4 px-8 border-primary-color border-[1px]">
+          <button className="mt-10 py-4 px-8 border-primary-color border-[1px] hero-cta">
             Schedule Now
           </button>
         </div>
