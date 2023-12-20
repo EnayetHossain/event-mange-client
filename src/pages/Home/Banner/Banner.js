@@ -7,7 +7,6 @@ const Banner = () => {
 
   useEffect(()=>{
     const text = new SplitType("#hero-text");
-    console.log(text.chars)
 
     const tl = gsap.timeline();
     

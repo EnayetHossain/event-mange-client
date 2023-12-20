@@ -36,6 +36,11 @@
     border-bottom-right-radius: 2em;
 }
 
+.mission-img img,
+.vision-img img {
+    transform: scale(1.4);
+}
+
 .mission-info,
 .vision-info {
     width: min(38em, 100%);

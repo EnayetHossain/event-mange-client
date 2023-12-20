@@ -22,14 +22,14 @@
     right: 0%;
 }
 
-.line {
+.banner-container .line {
     /* outline: 1px solid white; */
     overflow: hidden;
     word-wrap: break-word;
     max-width: min(66rem, 100%);
 }
 
-.char,
+.banner-container .char,
 .hero-cta {
     transform: translateY(100%);
     opacity: 0;
