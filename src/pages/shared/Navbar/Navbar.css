@@ -1,104 +1,105 @@
 .navbar {
-    /* background-color: red; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em 1em;
-    position: relative;
-    z-index: 15;
-    transform: translateY(-100%);
-    transition: transform 0.5s;
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1em;
+  position: relative;
+  z-index: 15;
+  transform: translateY(-100%);
+  transition: transform 0.5s;
 }
 
 .logo {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: rgb(var(--secondary-color));
-    font-weight: lighter;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgb(var(--secondary-color));
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
 }
 
 .blue {
-    color: rgb(var(--accent-color));
-    font-size: 2rem;
+  color: rgb(var(--accent-color));
+  font-size: 2rem;
 }
 
 .ham-bar {
-    cursor: pointer;
-    padding: 0.5em;
-    z-index: 2;
-    /* background-color: green; */
+  cursor: pointer;
+  padding: 0.5em;
+  z-index: 2;
+  /* background-color: green; */
 }
 
 .ham-bar .bar {
-    width: 2.8rem;
-    height: 0.3rem;
-    background-color: rgb(var(--secondary-color));
-    position: relative;
-    transition: 0.5s;
+  width: 2.8rem;
+  height: 0.3rem;
+  background-color: rgb(var(--secondary-color));
+  position: relative;
+  transition: 0.5s;
 }
 
 .ham-bar .bar::after {
-    content: "";
-    width: 60%;
-    height: 0.3rem;
-    background-color: rgb(var(--secondary-color));
-    position: absolute;
-    top: 250%;
-    right: 0;
-    transition: 0.3s;
+  content: "";
+  width: 60%;
+  height: 0.3rem;
+  background-color: rgb(var(--secondary-color));
+  position: absolute;
+  top: 250%;
+  right: 0;
+  transition: 0.3s;
 }
 
 .ham-bar:hover .bar::after {
-    width: 100%;
+  width: 100%;
 }
 
 .bar-active {
-    transform: rotateZ(-45deg);
-    background-color: rgb(var(--primary-color)) !important;
+  transform: rotateZ(-45deg);
+  background-color: rgb(var(--primary-color)) !important;
 }
 
 .bar-active::after {
-    width: 100% !important;
-    top: 50% !important;
-    right: 0 !important;
-    transform: rotateZ(90deg);
-    background-color: rgb(var(--primary-color)) !important;
+  width: 100% !important;
+  top: 50% !important;
+  right: 0 !important;
+  transform: rotateZ(90deg);
+  background-color: rgb(var(--primary-color)) !important;
 }
 
 .main-menu {
-    background-color: rgb(var(--accent-color));
-    position: absolute;
-    right: 0%;
-    top: 0%;
-    width: min(36rem, 100%);
-    transition: 0.5s;
-    clip-path: polygon(100% 0, 100% 0%, 100% 100%, 100% 100%);
-    overflow: hidden;
+  background-color: rgb(var(--accent-color));
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  width: min(36rem, 100%);
+  transition: 0.5s;
+  clip-path: polygon(100% 0, 100% 0%, 100% 100%, 100% 100%);
+  overflow: hidden;
 }
 
 .main-menu-active {
-    clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+  clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
 }
 
 .menu-items {
-    list-style-type: none;
-    padding: 1em 0;
+  list-style-type: none;
+  padding: 1em 0;
 }
 
 .menu-item {
-    padding: 0.5em;
-    margin: 0.5em 0;
-    transform: translateX(50%);
-    opacity: 0;
-    transition: 0.5s;
+  padding: 0.5em;
+  margin: 0.5em 0;
+  transform: translateX(50%);
+  opacity: 0;
+  transition: 0.5s;
 }
 
 .menu-item-active {
-    transform: translateX(0);
-    opacity: 1;
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .menu-item a {
-    font-size: 2.1rem;
-    color: rgb(var(--primary-color));
+  font-size: 2.1rem;
+  color: rgb(var(--primary-color));
 }
