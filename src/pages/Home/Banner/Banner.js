@@ -6,7 +6,7 @@ import "./Banner.css";
 const Banner = () => {
 
   useEffect(()=>{
-    const text = new SplitType("#hero-text");
+    new SplitType("#hero-text");
 
     const tl = gsap.timeline();
     
