@@ -1,0 +1,47 @@
+.letter-section {
+  position: relative;
+}
+
+.letter-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: url("../../../assets/lines.svg");
+  opacity: 0.8;
+}
+
+.letter-container {
+  position: relative;
+  width: min(45em, 100%);
+  margin: 0 auto;
+  z-index: 5;
+}
+
+.subscribe-form {
+  background-color: rgb(var(--secondary-800));
+  clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+  transition: clip-path 0.5s;
+}
+
+.subscribe-form input[type="email"] {
+  border-bottom: 1px solid rgba(var(--primary-color), 0.5);
+}
+
+.subscribe-form input[type="email"]::placeholder {
+  color: rgba(var(--primary-color), 0.5);
+}
+
+.subscribe-form input[type="submit"] {
+  border-top-right-radius: 1.3rem;
+  border-bottom-right-radius: 1.3rem;
+  border-bottom-left-radius: 1.3rem;
+  background-color: rgb(var(--primary-color));
+  color: rgb(var(--secondary-color));
+  width: max-content;
+  margin: 1em auto 0;
+  cursor: pointer;
+}

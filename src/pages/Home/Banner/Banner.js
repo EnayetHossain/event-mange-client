@@ -7,7 +7,6 @@ const Banner = () => {
 
   useEffect(()=>{
     new SplitType("#hero-text");
-
     const tl = gsap.timeline();
     
     tl.to(".char", {
@@ -22,7 +21,7 @@ const Banner = () => {
       duration: 0.2
     });
 
-  }, [])
+  }, []);
 
   return (
     <header className="desktop-max !p-0 bg-secondary-color relative overflow-hidden header">

@@ -61,7 +61,7 @@ const Achievements = () => {
       animation: tl,
       trigger: ".achievements-container",
       start: "top 70%",
-      markers: true,
+      markers: false,
       toggleActions: "play pause resume none",
     });
   }, []);

@@ -11,6 +11,7 @@
 :root {
   --primary-color: 255, 255, 255;
   --secondary-color: 0, 0, 0;
+  --secondary-800: 46, 46, 46;
   --accent-color: 79, 54, 234;
   --btn-border-radius: 0.8em;
   --animation-delay: 4s;
