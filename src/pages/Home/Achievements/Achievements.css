@@ -1,49 +1,49 @@
 .achievements-container {
-    background-color: rgb(var(--accent-color));
-    color: rgb(var(--primary-color));
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 5em 2em;
-    width: min(70em, 100%);
-    margin: 0 auto;
-    border-radius: 1.1em;
-    /* position: absolute;
+  background-color: rgb(var(--accent-color));
+  color: rgb(var(--primary-color));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5em 2em;
+  width: min(70em, 100%);
+  margin: 0 auto;
+  border-radius: 1.1em;
+  /* position: absolute;
     height: auto;
     top: -11%;
     left: 50%;
     transform: translateX(-50%); */
 }
 
-.achievements-container h4 {
-    font-weight: lighter;
-    font-size: clamp(2.6rem, 2.6vw, 3.5rem);
+.achievements-container h4 .char {
+  font-weight: lighter;
+  font-size: clamp(2.6rem, 2.6vw, 3.5rem);
 }
 
 .achievements-container div {
-    font-size: 2.5rem;
-    text-align: center;
+  font-size: 2.5rem;
+  text-align: center;
 }
 
 .achievements-container div span {
-    font-weight: 100;
-    font-size: 3rem;
+  font-weight: 100;
+  font-size: 3rem;
 }
 
 .achievements-container div p {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 @media only screen and (max-width: 870px) {
-    .achievements-container {
-        flex-direction: column;
-        padding: 3em 2em;
-        text-align: center;
-    }
+  .achievements-container {
+    flex-direction: column;
+    padding: 3em 2em;
+    text-align: center;
+  }
 
-    .achievements-container h4,
-    .achievements-container div {
-        margin: 1em 0;
-    }
+  .achievements-container h4,
+  .achievements-container div {
+    margin: 1em 0;
+  }
 }

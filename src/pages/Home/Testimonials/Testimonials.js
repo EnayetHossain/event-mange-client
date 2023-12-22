@@ -26,6 +26,10 @@ const Testimonials = () => {
 
   return (
     <section className="my-[7em] px-4">
+      <div className="text-5xl text-accent-color text-center mb-[2em]">
+        Testimonials
+      </div>
+
       <div className="carousel" data-carousel>
         <button
           type="button"
