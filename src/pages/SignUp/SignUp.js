@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash, FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { PiSignInBold } from "react-icons/pi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "./SignUp.css";
@@ -86,9 +87,9 @@ const SignUp = () => {
           </div>
         </div>
 
-        <div className="bg-accent-color text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer">
+        <div className="bg-accent-color text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center">
           <input className="cursor-pointer" type="submit" value="Sign Up" />
-          <span className="ml-3">icon</span>
+          <span className="ml-5"><PiSignInBold></PiSignInBold></span>
         </div>
 
         <div className="mt-10">

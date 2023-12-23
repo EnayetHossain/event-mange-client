@@ -1,6 +1,6 @@
-/* .form-container {
-  background-color: rgb(235, 247, 235);
-} */
+.form-container {
+  padding: 0 1rem;
+}
 
 .sign-form {
   width: min(40em, 100%);
