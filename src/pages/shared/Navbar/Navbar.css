@@ -102,4 +102,5 @@
 .menu-item a {
   font-size: 2.1rem;
   color: rgb(var(--primary-color));
+  text-decoration: none;
 }

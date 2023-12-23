@@ -56,7 +56,7 @@ const Navbar = () => {
                     <li className='menu-item'><Link to={"/"}>Home</Link></li>
                     <li className='menu-item'><Link to={"/events"}>Events</Link></li>
                     <li className='menu-item'><Link to={"/profile"}>Profile</Link></li>
-                    <li className='menu-item'><Link to={"/login"}>Login</Link></li>
+                    <li className='menu-item'><Link to={"/sign-in"}>Sign In</Link></li>
                     <li className='menu-item'><Link to={"/sign-up"}>Sign up</Link></li>
                     <li className='menu-item'><Link to={"/logout"}>Logout</Link></li>
                 </ul>

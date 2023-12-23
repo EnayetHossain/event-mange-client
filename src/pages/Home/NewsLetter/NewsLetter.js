@@ -68,7 +68,7 @@ const NewsLetter = () => {
             name="email"
           />
           <input
-            className="font-semibold py-2 px-4"
+            className="font-semibold py-3 px-10"
             type="submit"
             value={"Subscribe now"}
           />

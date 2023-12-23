@@ -1,0 +1,24 @@
+/* .form-container {
+  background-color: rgb(235, 247, 235);
+} */
+
+.sign-form {
+  width: min(40em, 100%);
+  padding: 5em 0;
+  margin: 0 auto;
+}
+
+.input-container {
+  background-color: rgb(var(--primary-color));
+  color: rgb(var(--secondary-color));
+  box-shadow: 1px 2px 7px rgba(var(--secondary-color), 0.3);
+  border-radius: 3rem;
+  margin: 2.5rem 0;
+  padding: 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container input {
+  width: 100%;
+}

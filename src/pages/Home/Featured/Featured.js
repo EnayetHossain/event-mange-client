@@ -1,3 +1,5 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import { useEffect, useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { GoClock } from "react-icons/go";
@@ -17,7 +19,33 @@ const Featured = () => {
     textSeconds,
   });
 
+  gsap.registerPlugin(ScrollTrigger);
+
   useEffect(() => {
+    const tl = gsap.timeline({defaults: {ease: "power1.inOut"}});
+
+    tl
+    // overlay animation of image
+    .to(".featured-img .overlay", {
+      scaleX: 0,
+      transformOrigin: "left",
+      duration: 1,
+    })
+
+    .to(".featured-img img", {
+      scale: 1,
+      duration: 1,
+    }, "<")
+
+    ScrollTrigger.create({
+      animation: tl,
+      trigger: ".featured-container",
+      toggleActions: "play pause resume none",
+      markers: false,
+      start: "top 70%"
+  });
+
+
     const interval = setInterval(() => {
       setCountDownValue({ textDays, textHours, textMinutes, textSeconds });
 
@@ -91,6 +119,7 @@ const Featured = () => {
           </div>
 
           <div className="featured-img">
+            <div className="bg-accent-color w-full h-full overlay absolute top-0 left-0 z-20"></div>
             <img src="/images/background.jpg" alt="featured" />
           </div>
         </div>

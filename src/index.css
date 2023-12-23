@@ -53,6 +53,11 @@ button {
     sans-serif;
 }
 
+a {
+  color: rgb(var(--accent-color));
+  text-decoration: underline;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
