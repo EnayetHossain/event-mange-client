@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash, FaUserAlt } from "react-icons/fa";
+import { FaImage } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { PiSignInBold } from "react-icons/pi";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -84,6 +85,18 @@ const SignUp = () => {
                 <FaEye></FaEye>
               )}
             </span>
+          </div>
+        </div>
+
+        <div className="input-container">
+          <label className="mb-3" htmlFor="email">
+            Your Picture
+          </label>
+          <div className="flex items-center justify-between">
+            <span className="mr-3 form-icon">
+              <FaImage></FaImage>
+            </span>
+            <input type="file" name="file" />
           </div>
         </div>
 
