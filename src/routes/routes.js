@@ -4,7 +4,7 @@ import {
 import Events from "../Layouts/Events";
 import Main from "../Layouts/Main";
 import Home from "../pages/Home/Home/Home";
-import Profile from "../pages/Profile/Profile";
+import Profile from "../pages/Profile/Profile/Profile";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 
