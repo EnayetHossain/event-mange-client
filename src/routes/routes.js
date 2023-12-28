@@ -9,12 +9,14 @@ import Profile from "../pages/Profile/Profile/Profile";
 import ProfileInfo from "../pages/Profile/ProfileInfo/ProfileInfo";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
+import ErrorPage from "../pages/shared/ErrorPage/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",

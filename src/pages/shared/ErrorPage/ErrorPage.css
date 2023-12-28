@@ -1,0 +1,26 @@
+.error-section {
+  /* background-color: rebeccapurple; */
+  width: min(42em, 100%);
+  margin: 3em auto;
+  padding: 0 1em;
+}
+
+.error-title {
+  font-size: clamp(3rem, 4vw, 6rem);
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.error-code {
+  font-size: clamp(4rem, 6vw, 9rem);
+  font-weight: 600;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 1.2em 0;
+}
+
+.error-subtitle {
+  font-size: 2.3rem;
+  font-weight: 400;
+}
