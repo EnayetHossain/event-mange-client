@@ -1,0 +1,8 @@
+.card {
+  box-shadow: 0 5px 10px rgba(var(--secondary-color), 0.3);
+}
+
+.date {
+  font-weight: 600;
+  color: rgba(var(--secondary-color), 0.6);
+}
