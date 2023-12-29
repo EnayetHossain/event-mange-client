@@ -9,7 +9,7 @@ const MyEvents = () => {
         <span className="work-sans inline-block font-bold text-3xl">
           My Events
         </span>
-        <Link className="no-underline bg-accent-color text-primary-color px-5 py-4 font-semibold rounded-2xl" to={"/create-event"}>Create an Event</Link>
+        <Link className="no-underline bg-accent-color text-primary-color px-5 py-4 font-semibold rounded-2xl" to={"/profile/create-event"}>Create an Event</Link>
       </div>
 
       <div className="card-container">
