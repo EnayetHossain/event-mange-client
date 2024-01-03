@@ -4,7 +4,7 @@ import "./MyEvents.css";
 
 const MyEvents = () => {
   return (
-    <div className="desktop-max !mt-56">
+    <div className="desktop-max !mt-14">
       <div className="mb-11 flex justify-between items-center">
         <span className="work-sans inline-block font-bold text-3xl">
           My Events

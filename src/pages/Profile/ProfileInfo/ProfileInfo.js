@@ -8,24 +8,25 @@ import "./ProfileInfo.css";
 
 const ProfileInfo = () => {
   const [showForm, setShowForm] = useState(false);
-  
+
   return (
-    <div className="desktop-max !mt-11">
+    <div className="desktop-max !mt-14">
       <div className="work-sans font-semibold text-3xl mb-8">About me</div>
       <div className="flex items-center work-sans">
         <FaUserAlt className="mr-3"></FaUserAlt> User Name
       </div>
-      <div className="flex items-center work-sans">
+      <div className="flex items-center work-sans my-4">
         <MdEmail className="mr-3"></MdEmail> useremail@gamil.com
       </div>
-      <button className="flex items-center" onClick={()=> setShowForm(true)}>
+      <button
+        className="flex items-center mb-4"
+        onClick={() => setShowForm(true)}
+      >
         <RiLockPasswordFill className="mr-3"></RiLockPasswordFill> Change
         password
       </button>
 
-      {
-        showForm && <ProfileForm setShowForm={setShowForm}></ProfileForm>
-      }
+      {showForm && <ProfileForm setShowForm={setShowForm}></ProfileForm>}
 
       <Link className="" to={"/update-profile"}>
         Update Profile
