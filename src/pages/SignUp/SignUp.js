@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaUserAlt } from "react-icons/fa";
 import { FaImage } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
@@ -11,20 +12,38 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+  };
+
   return (
     <div className="form-container">
-      <form className="sign-form work-sans">
+      <form className="sign-form work-sans" onSubmit={handleSubmit(onSubmit)}>
         <div className="input-container">
-          <label className="mb-3" htmlFor="full-name">
+          <label className="mb-3" htmlFor="name">
             Full Name
           </label>
           <div className="flex items-center justify-between">
             <span className="mr-3 form-icon">
               <FaUserAlt></FaUserAlt>
             </span>
-            <input type="text" name="full-name" placeholder="Your Name" />
+            <input
+              type="text"
+              {...register("name", { required: true })}
+              placeholder="Your Name"
+            />
           </div>
         </div>
+        {errors.name && <span className="text-red-500">Name is required</span>}
 
         <div className="input-container">
           <label className="mb-3" htmlFor="email">
@@ -34,9 +53,16 @@ const SignUp = () => {
             <span className="mr-3 form-icon">
               <MdEmail></MdEmail>
             </span>
-            <input type="email" name="email" placeholder="example@gamil.com" />
+            <input
+              type="email"
+              {...register("email", { required: true })}
+              placeholder="example@gamil.com"
+            />
           </div>
         </div>
+        {errors.email && (
+          <span className="text-red-500">Email is required</span>
+        )}
 
         <div className="input-container">
           <label className="mb-3" htmlFor="password">
@@ -48,9 +74,10 @@ const SignUp = () => {
             </span>
             <input
               type={showPassword ? "text" : "password"}
-              name="password"
+              {...register("password", { required: true })}
               placeholder="Password"
             />
+
             <span
               className="ml-3 cursor-pointer form-icon"
               onClick={() => setShowPassword(!showPassword)}
@@ -60,9 +87,12 @@ const SignUp = () => {
             </span>
           </div>
         </div>
+        {errors.password && (
+          <span className="text-red-500">Password id required</span>
+        )}
 
         <div className="input-container">
-          <label className="mb-3" htmlFor="confirm-password">
+          <label className="mb-3" htmlFor="confirmPassword">
             Confirm Password
           </label>
           <div className="flex items-center justify-between">
@@ -71,7 +101,13 @@ const SignUp = () => {
             </span>
             <input
               type={showConfirmPassword ? "text" : "password"}
-              name="confirm-password"
+              {...register("confirmPassword", {
+                required: true,
+                validate: (val) => {
+                  if (watch("password") !== val)
+                    return "Your passwords do no match";
+                },
+              })}
               placeholder="Confirm password"
             />
             <span
@@ -87,6 +123,9 @@ const SignUp = () => {
             </span>
           </div>
         </div>
+        {errors.confirmPassword && (
+          <span className="text-red-500">Confirm your password</span>
+        )}
 
         <div className="input-container">
           <label className="mb-3" htmlFor="email">
@@ -112,10 +151,15 @@ const SignUp = () => {
           </div>
         </div>
 
-        <div className="bg-accent-color text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center">
-          <input className="cursor-pointer" type="submit" value="Sign Up" />
-          <span className="ml-5"><PiSignInBold></PiSignInBold></span>
-        </div>
+        <button
+          type="submit"
+          className="bg-accent-color text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center w-full font-medium"
+        >
+          Sign Up
+          <span className="ml-5">
+            <PiSignInBold></PiSignInBold>
+          </span>
+        </button>
 
         <div className="mt-10">
           Already have an account? <Link to={"/sign-in"}>Sign In</Link>
