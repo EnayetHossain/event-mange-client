@@ -4,14 +4,14 @@ import { IoCloseSharp } from "react-icons/io5";
 import { PiSignInBold } from "react-icons/pi";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-const ProfileForm = ({ setShowForm }) => {
+const ProfileForm = ({ setShowModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmNewPassword, setConfirmNewPassword] = useState(false);
 
   return (
-    <div className="form-container">
-      <form className="sign-form work-sans">
+    <div className="form-container bg-primary-color overflow-hidden rounded-2xl">
+      <form className="sign-form work-sans !py-0 md:!px-[1em]">
         <div className="input-container">
           <label className="mb-3" htmlFor="oldPassword">
             Old Password
@@ -85,8 +85,8 @@ const ProfileForm = ({ setShowForm }) => {
           </div>
         </div>
 
-        <div className="flex w-full">
-          <div className="bg-accent-color text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center w-full mx-3">
+        <div className="flex flex-col sm:flex-row w-full pb-[1.5em]">
+          <div className="bg-accent-color mb-10 sm:mb-0 text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center w-full mx-3">
             <input
               className="cursor-pointer"
               type="submit"
@@ -99,7 +99,7 @@ const ProfileForm = ({ setShowForm }) => {
 
           <div
             className="border-accent-color border-2 text-secondary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center w-full mx-3"
-            onClick={() => setShowForm(false)}
+            onClick={() => setShowModal(false)}
           >
             <button className="cursor-pointer font-semibold" type="button">
               Cancel
