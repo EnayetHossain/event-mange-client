@@ -4,7 +4,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { PiSignInBold } from "react-icons/pi";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-const ProfileForm = ({ setShowModal }) => {
+const ProfileForm = ({ setShowChangePasswordModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmNewPassword, setConfirmNewPassword] = useState(false);
@@ -99,7 +99,7 @@ const ProfileForm = ({ setShowModal }) => {
 
           <div
             className="border-accent-color border-2 text-secondary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center w-full mx-3"
-            onClick={() => setShowModal(false)}
+            onClick={() => setShowChangePasswordModal(false)}
           >
             <button className="cursor-pointer font-semibold" type="button">
               Cancel

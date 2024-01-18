@@ -1,4 +1,4 @@
-.overlay {
+.modal-overlay {
   background-color: rgba(var(--secondary-color), 0.4);
   width: 100%;
   min-height: 100vh;

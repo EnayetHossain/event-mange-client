@@ -3,10 +3,12 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import ProfileForm from "../ProfileForm/ProfileForm";
+import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import "./ProfileInfo.css";
 
 const ProfileInfo = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
+  const [showUpdateProfileModal, setShowUpdateProfileModal] = useState(false);
 
   return (
     <div className="desktop-max !mt-14">
@@ -21,21 +23,36 @@ const ProfileInfo = () => {
 
       <button
         className="flex items-center mb-4 underline text-accent-color"
-        onClick={() => setShowModal(true)}
+        onClick={() => setShowChangePasswordModal(true)}
       >
         <RiLockPasswordFill className="mr-3"></RiLockPasswordFill> Change
         password
       </button>
 
-      {showModal && (
-        <div className="overlay flex justify-center items-center">
+      {showChangePasswordModal && (
+        <div className="modal-overlay flex justify-center items-center">
           <div className="modal-content">
-            <ProfileForm setShowModal={setShowModal}></ProfileForm>
+            <ProfileForm
+              setShowChangePasswordModal={setShowChangePasswordModal}
+            ></ProfileForm>
           </div>
         </div>
       )}
 
-      <button className="bg-accent-color text-primary-color px-8 py-4 rounded-2xl">
+      {showUpdateProfileModal && (
+        <div className="modal-overlay flex justify-center items-center">
+          <div className="modal-content">
+            <UpdateProfile
+              setShowUpdateProfileModal={setShowUpdateProfileModal}
+            ></UpdateProfile>
+          </div>
+        </div>
+      )}
+
+      <button
+        onClick={() => setShowUpdateProfileModal(true)}
+        className="bg-accent-color text-primary-color px-8 py-4 rounded-2xl"
+      >
         Update Profile
       </button>
     </div>
