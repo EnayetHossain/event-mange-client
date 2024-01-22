@@ -5,12 +5,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { PiSignInBold } from "react-icons/pi";
 
 const UpdateProfile = ({ setShowUpdateProfileModal }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -33,35 +28,34 @@ const UpdateProfile = ({ setShowUpdateProfileModal }) => {
             </span>
             <input
               type="text"
-              {...register("name", { required: true })}
+              {...register("name")}
               placeholder="Your Name"
               defaultValue={"User name"}
             />
           </div>
         </div>
-        {errors.name && <span className="text-red-500">Name is required</span>}
 
         <div className="input-container">
-          <label className="mb-3" htmlFor="email">
+          <label className="mb-3" htmlFor="profilePhoto">
             Profile Picture
           </label>
           <div className="flex items-center justify-between">
             <span className="mr-3 form-icon">
               <FaImage></FaImage>
             </span>
-            <input type="file" name="file" />
+            <input type="file" {...register("profilePhoto")} />
           </div>
         </div>
 
         <div className="input-container">
-          <label className="mb-3" htmlFor="email">
+          <label className="mb-3" htmlFor="coverPhoto">
             Cover Picture
           </label>
           <div className="flex items-center justify-between">
             <span className="mr-3 form-icon">
               <FaImage></FaImage>
             </span>
-            <input type="file" name="file" />
+            <input type="file" {...register("coverPhoto")} />
           </div>
         </div>
 
