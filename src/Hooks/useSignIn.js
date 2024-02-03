@@ -1,16 +1,16 @@
 import { useState } from "react";
 import useAuthContext from "./useAuthContext";
 
-const useSignUp = () => {
+const useSignIn = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
   const { dispatch } = useAuthContext();
 
-  const signUp = async (data) => {
+  const signIn = async (data) => {
     setLoading(true);
     setError(null);
 
-    const response = await fetch("http://localhost:5000/api/v1/auth/sign-up", {
+    const response = await fetch("http://localhost:5000/api/v1/auth/sign-in", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -34,7 +34,7 @@ const useSignUp = () => {
     }
   };
 
-  return { error, loading, signUp };
+  return { error, loading, signIn };
 };
 
-export default useSignUp;
+export default useSignIn;

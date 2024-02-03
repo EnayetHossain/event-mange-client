@@ -5,9 +5,11 @@ import { MdEmail } from "react-icons/md";
 import { PiSignInBold } from "react-icons/pi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import useSignIn from "../../Hooks/useSignIn";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { error, loading, signIn } = useSignIn();
 
   const {
     register,
@@ -16,8 +18,9 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    await signIn(data);
     reset();
   };
 
@@ -39,9 +42,7 @@ const SignIn = () => {
             />
           </div>
         </div>
-        {errors.email && (
-          <span className="text-red-500">Email is required</span>
-        )}
+        {errors.email && <span className="error">Email is required</span>}
 
         <div className="input-container">
           <label className="mb-3" htmlFor="password">
@@ -65,12 +66,13 @@ const SignIn = () => {
             </span>
           </div>
         </div>
-        {errors.password && (
-          <span className="text-red-500">Password is required</span>
-        )}
+        {errors.password && <span className="error">Password is required</span>}
+
+        {error && <span className="error mb-7">{error}</span>}
 
         <button
           type="submit"
+          disabled={loading}
           className="bg-accent-color text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center w-full font-medium"
         >
           Sign In

@@ -46,11 +46,7 @@ const SignUp = () => {
             />
           </div>
         </div>
-        {errors.name && (
-          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl">
-            Name is required
-          </span>
-        )}
+        {errors.name && <span className="error">Name is required</span>}
 
         <div className="input-container">
           <label className="mb-3" htmlFor="email">
@@ -67,11 +63,7 @@ const SignUp = () => {
             />
           </div>
         </div>
-        {errors.email && (
-          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl">
-            Email is required
-          </span>
-        )}
+        {errors.email && <span className="error">Email is required</span>}
 
         <div className="input-container">
           <label className="mb-3" htmlFor="password">
@@ -96,11 +88,7 @@ const SignUp = () => {
             </span>
           </div>
         </div>
-        {errors.password && (
-          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl">
-            Password id required
-          </span>
-        )}
+        {errors.password && <span className="error">Password id required</span>}
 
         <div className="input-container">
           <label className="mb-3" htmlFor="confirmPassword">
@@ -135,9 +123,7 @@ const SignUp = () => {
           </div>
         </div>
         {errors.confirmPassword && (
-          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl">
-            Confirm your password
-          </span>
+          <span className="error">Confirm your password</span>
         )}
 
         <div className="input-container">
@@ -164,11 +150,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        {error && (
-          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 my-4 inline-block w-full rounded-3xl">
-            {error}
-          </span>
-        )}
+        {error && <span className="error mb-7">{error}</span>}
 
         <button
           type="submit"

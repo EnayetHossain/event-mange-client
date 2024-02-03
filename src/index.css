@@ -80,3 +80,7 @@ img {
 .work-sans {
   font-family: "Work Sans", sans-serif;
 }
+
+.error {
+  @apply text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl;
+}
