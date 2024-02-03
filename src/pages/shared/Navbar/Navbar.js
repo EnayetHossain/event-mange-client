@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useAuthContext from "../../../Hooks/useAuthContext";
 import useLogOut from "../../../Hooks/useLogOut";
 import "./Navbar.css";
 
@@ -10,6 +11,8 @@ const Navbar = () => {
 
   let menuItems = [...document.querySelectorAll(".menu-item")];
   let options = {};
+
+  const { user } = useAuthContext();
 
   const handleLogout = () => {
     logOut();
@@ -65,18 +68,27 @@ const Navbar = () => {
           <li className="menu-item">
             <Link to={"/events"}>Events</Link>
           </li>
-          <li className="menu-item">
-            <Link to={"/profile"}>Profile</Link>
-          </li>
-          <li className="menu-item">
-            <Link to={"/sign-in"}>Sign In</Link>
-          </li>
-          <li className="menu-item">
-            <Link to={"/sign-up"}>Sign up</Link>
-          </li>
-          <li className="menu-item">
-            <button onClick={handleLogout}>Logout</button>
-          </li>
+          {user && (
+            <>
+              <li className="menu-item">
+                <Link to={"/profile"}>Profile</Link>
+              </li>
+              <li className="menu-item">
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            </>
+          )}
+
+          {!user && (
+            <>
+              <li className="menu-item">
+                <Link to={"/sign-in"}>Sign In</Link>
+              </li>
+              <li className="menu-item">
+                <Link to={"/sign-up"}>Sign up</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
