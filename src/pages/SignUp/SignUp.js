@@ -6,11 +6,13 @@ import { MdEmail } from "react-icons/md";
 import { PiSignInBold } from "react-icons/pi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import useSignUp from "../../Hooks/useSignUp";
 import "./SignUp.css";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { error, loading, signUp } = useSignUp();
 
   const {
     register,
@@ -20,8 +22,9 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    await signUp(data);
     reset();
   };
 
@@ -43,7 +46,11 @@ const SignUp = () => {
             />
           </div>
         </div>
-        {errors.name && <span className="text-red-500">Name is required</span>}
+        {errors.name && (
+          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl">
+            Name is required
+          </span>
+        )}
 
         <div className="input-container">
           <label className="mb-3" htmlFor="email">
@@ -61,7 +68,9 @@ const SignUp = () => {
           </div>
         </div>
         {errors.email && (
-          <span className="text-red-500">Email is required</span>
+          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl">
+            Email is required
+          </span>
         )}
 
         <div className="input-container">
@@ -88,7 +97,9 @@ const SignUp = () => {
           </div>
         </div>
         {errors.password && (
-          <span className="text-red-500">Password id required</span>
+          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl">
+            Password id required
+          </span>
         )}
 
         <div className="input-container">
@@ -124,7 +135,9 @@ const SignUp = () => {
           </div>
         </div>
         {errors.confirmPassword && (
-          <span className="text-red-500">Confirm your password</span>
+          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl">
+            Confirm your password
+          </span>
         )}
 
         <div className="input-container">
@@ -151,8 +164,15 @@ const SignUp = () => {
           </div>
         </div>
 
+        {error && (
+          <span className="text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 my-4 inline-block w-full rounded-3xl">
+            {error}
+          </span>
+        )}
+
         <button
           type="submit"
+          disabled={loading}
           className="bg-accent-color text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center w-full font-medium"
         >
           Sign Up
