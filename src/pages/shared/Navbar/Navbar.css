@@ -99,7 +99,8 @@
   opacity: 1;
 }
 
-.menu-item a {
+.menu-item a,
+.menu-item button {
   font-size: 2.1rem;
   color: rgb(var(--primary-color));
   text-decoration: none;

@@ -23,10 +23,13 @@ const useSignUp = () => {
       setLoading(false);
       setError(jsonData.error);
     }
-    // if there is no error
-    localStorage.setItem("token", `Bearer ${jsonData.token}`);
-    // update the local state
-    dispatch({ type: "LOGIN", payload: jsonData.token });
+
+    if (response.ok) {
+      // if there is no error
+      localStorage.setItem("token", `Bearer ${jsonData.token}`);
+      // update the local state
+      dispatch({ type: "LOGIN", payload: jsonData.token });
+    }
   };
 
   return { error, loading, signUp };

@@ -1,13 +1,19 @@
 import gsap from "gsap";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useLogOut from "../../../Hooks/useLogOut";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { logOut } = useLogOut();
 
   let menuItems = [...document.querySelectorAll(".menu-item")];
   let options = {};
+
+  const handleLogout = () => {
+    logOut();
+  };
 
   // stagger animation of menu
   const showItem = (entries) => {
@@ -69,7 +75,7 @@ const Navbar = () => {
             <Link to={"/sign-up"}>Sign up</Link>
           </li>
           <li className="menu-item">
-            <Link to={"/logout"}>Logout</Link>
+            <button onClick={handleLogout}>Logout</button>
           </li>
         </ul>
       </div>
