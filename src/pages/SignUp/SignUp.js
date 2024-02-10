@@ -127,26 +127,26 @@ const SignUp = () => {
         )}
 
         <div className="input-container">
-          <label className="mb-3" htmlFor="email">
+          <label className="mb-3" htmlFor="profilePhoto">
             Profile Picture
           </label>
           <div className="flex items-center justify-between">
             <span className="mr-3 form-icon">
               <FaImage></FaImage>
             </span>
-            <input type="file" name="file" />
+            <input type="file" name="profilePhoto" />
           </div>
         </div>
 
         <div className="input-container">
-          <label className="mb-3" htmlFor="email">
+          <label className="mb-3" htmlFor="coverPhoto">
             Cover Picture
           </label>
           <div className="flex items-center justify-between">
             <span className="mr-3 form-icon">
               <FaImage></FaImage>
             </span>
-            <input type="file" name="file" />
+            <input type="file" name="coverPhoto" />
           </div>
         </div>
 
