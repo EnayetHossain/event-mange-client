@@ -21,6 +21,11 @@ footer {
   margin: 1em;
 }
 
+.footer-menu-item > button {
+  color: rgb(var(--accent-color));
+  text-decoration: underline;
+}
+
 .footer-socials-item {
   margin: 1em 0.5em;
   background-color: rgba(var(--accent-color), 0.2);

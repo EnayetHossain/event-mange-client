@@ -63,15 +63,21 @@ const Navbar = () => {
       <div className={`main-menu ${!open ? "" : "main-menu-active"}`}>
         <ul className="menu-items">
           <li className="menu-item">
-            <Link to={"/"}>Home</Link>
+            <Link to={"/"} onClick={() => setOpen(false)}>
+              Home
+            </Link>
           </li>
           <li className="menu-item">
-            <Link to={"/events"}>Events</Link>
+            <Link to={"/events"} onClick={() => setOpen(false)}>
+              Events
+            </Link>
           </li>
           {user && (
             <>
               <li className="menu-item">
-                <Link to={"/profile"}>Profile</Link>
+                <Link to={"/profile"} onClick={() => setOpen(false)}>
+                  Profile
+                </Link>
               </li>
               <li className="menu-item">
                 <button onClick={handleLogout}>Logout</button>
@@ -82,10 +88,14 @@ const Navbar = () => {
           {!user && (
             <>
               <li className="menu-item">
-                <Link to={"/sign-in"}>Sign In</Link>
+                <Link to={"/sign-in"} onClick={() => setOpen(false)}>
+                  Sign In
+                </Link>
               </li>
               <li className="menu-item">
-                <Link to={"/sign-up"}>Sign up</Link>
+                <Link to={"/sign-up"} onClick={() => setOpen(false)}>
+                  Sign up
+                </Link>
               </li>
             </>
           )}

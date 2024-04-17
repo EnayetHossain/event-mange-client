@@ -9,8 +9,9 @@ import "./Featured.css";
 
 const Featured = () => {
   const { textDays, textHours, textMinutes, textSeconds, gap } = useCountDown(
-    "December 30, 2023 00:00:00"
+    "December 30, 2024 00:00:00"
   );
+  const [isFeatured, setIsFeatured] = useState(false);
 
   const [countDownValue, setCountDownValue] = useState({
     textDays,
@@ -22,29 +23,34 @@ const Featured = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
-    const tl = gsap.timeline({defaults: {ease: "power1.inOut"}});
+    if (isFeatured) {
+      const tl = gsap.timeline({ defaults: { ease: "power1.inOut" } });
 
-    tl
-    // overlay animation of image
-    .to(".featured-img .overlay", {
-      scaleX: 0,
-      transformOrigin: "left",
-      duration: 1,
-    })
+      tl
+        // overlay animation of image
+        .to(".featured-img .overlay", {
+          scaleX: 0,
+          transformOrigin: "left",
+          duration: 1,
+        })
 
-    .to(".featured-img img", {
-      scale: 1,
-      duration: 1,
-    }, "<")
+        .to(
+          ".featured-img img",
+          {
+            scale: 1,
+            duration: 1,
+          },
+          "<"
+        );
 
-    ScrollTrigger.create({
-      animation: tl,
-      trigger: ".featured-container",
-      toggleActions: "play pause resume none",
-      markers: false,
-      start: "top 70%"
-  });
-
+      ScrollTrigger.create({
+        animation: tl,
+        trigger: ".featured-container",
+        toggleActions: "play pause resume none",
+        markers: false,
+        start: "top 70%",
+      });
+    }
 
     const interval = setInterval(() => {
       setCountDownValue({ textDays, textHours, textMinutes, textSeconds });
@@ -54,10 +60,12 @@ const Featured = () => {
       }
     }, 1000);
 
-    return () => clearInterval(interval);
-  }, [textDays, textHours, textMinutes, textSeconds, gap]);
+    setIsFeatured(gap >= 0);
 
-  let isFeatured = gap >= 0;
+    return () => clearInterval(interval);
+  }, [textDays, textHours, textMinutes, textSeconds, gap, isFeatured]);
+
+  // let isFeatured = gap >= 0;
 
   return (
     <section className="desktop-max">
