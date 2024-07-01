@@ -26,7 +26,7 @@ const useSignIn = () => {
 
     if (response.ok) {
       // if there is no error
-      localStorage.setItem("token", `Bearer ${jsonData.token}`);
+      localStorage.setItem("token", `${jsonData.token}`);
       // update the local state
       dispatch({ type: "LOGIN", payload: jsonData.token });
 
