@@ -25,7 +25,8 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const user = localStorage.getItem("token");
-    const token = user?.split(" ")[1];
+    // const token = user?.split(" ")[1];
+    const token = user;
 
     if (user) {
       dispatch({ type: "LOGIN", payload: token });
