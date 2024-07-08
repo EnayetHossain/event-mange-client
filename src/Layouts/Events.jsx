@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import EventCard from "../../src/Components/EventCard/EventCard";
+import EventCard from "../Components/EventCard/EventCard";
+import SkeletonCard from "../Components/SkeletonCard/SkeletonCard";
 import axios from "../Utils/axiosConfig";
 
 const Events = () => {
@@ -24,7 +25,16 @@ const Events = () => {
   return (
     <div className="card-container desktop-max !my-20">
       {loading ? (
-        <div>Loading...</div>
+        <>
+          <SkeletonCard></SkeletonCard>
+          <SkeletonCard></SkeletonCard>
+          <SkeletonCard></SkeletonCard>
+          <SkeletonCard></SkeletonCard>
+          <SkeletonCard></SkeletonCard>
+          <SkeletonCard></SkeletonCard>
+          <SkeletonCard></SkeletonCard>
+          <SkeletonCard></SkeletonCard>
+        </>
       ) : (
         events.map((event) => (
           <EventCard
