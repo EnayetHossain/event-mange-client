@@ -6,21 +6,22 @@ import "./MyEvents.css";
 
 const MyEvents = () => {
   const [myEvents, setMyEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getAllMyEvents = async () => {
       try {
         const events = await axios.get("/api/v1/events/getEventByUser");
         setMyEvents(events.data.data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     };
 
     getAllMyEvents();
   }, []);
-
-  console.log(myEvents);
 
   return (
     <div className="desktop-max !mt-14">
@@ -37,13 +38,17 @@ const MyEvents = () => {
       </div>
 
       <div className="card-container">
-        {myEvents?.map((event) => (
-          <EventCard
-            key={event._id}
-            isButtonVisible={false}
-            event={event}
-          ></EventCard>
-        ))}
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          myEvents?.map((event) => (
+            <EventCard
+              key={event._id}
+              isButtonVisible={false}
+              event={event}
+            ></EventCard>
+          ))
+        )}
       </div>
     </div>
   );
