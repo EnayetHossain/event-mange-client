@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import EventCard from "../Components/EventCard/EventCard";
 import SkeletonCard from "../Components/SkeletonCard/SkeletonCard";
-import axios from "../Utils/axiosConfig";
+// import axios from "../Utils/axiosConfig";
+import useAxiosConfig from "../Hooks/useAxiosConfig";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const axiosConfig = useAxiosConfig();
 
   useEffect(() => {
     const getAllEvents = async () => {
       try {
-        const events = await axios.get("/api/v1/events");
+        const events = await axiosConfig.get("/api/v1/events");
         setEvents(events.data.data);
         setLoading(false);
       } catch (error) {
@@ -20,7 +22,7 @@ const Events = () => {
     };
 
     getAllEvents();
-  }, []);
+  }, [axiosConfig]);
 
   return (
     <div className="card-container desktop-max !my-20">

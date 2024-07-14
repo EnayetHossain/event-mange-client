@@ -8,6 +8,7 @@ import ProfileInfo from "../pages/Profile/ProfileInfo/ProfileInfo";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import ErrorPage from "../pages/shared/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
 
       {
         path: "/profile",
-        element: <Profile></Profile>,
+        element: <PrivateRoute> <Profile></Profile> </PrivateRoute>,
         children: [
           {
             path: "/profile",

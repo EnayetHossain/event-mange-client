@@ -8,11 +8,16 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import useSignUp from "../../Hooks/useSignUp";
 import "./SignUp.css";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { error, loading, signUp } = useSignUp();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -24,8 +29,11 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
-    await signUp(data);
+    const isLoggedIn = await signUp(data);
     reset();
+    if (isLoggedIn) {
+      navigate(from, { replace: true });
+    }
   };
 
   return (

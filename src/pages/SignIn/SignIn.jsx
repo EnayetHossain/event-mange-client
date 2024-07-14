@@ -6,10 +6,15 @@ import { PiSignInBold } from "react-icons/pi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import useSignIn from "../../Hooks/useSignIn";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { error, loading, signIn } = useSignIn();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -20,8 +25,11 @@ const SignIn = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
-    await signIn(data);
+    const isLoggedIn = await signIn(data);
     reset();
+    if (isLoggedIn) {
+      navigate(from, { replace: true });
+    }
   };
 
   return (
