@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import { PiSignInBold } from "react-icons/pi";
@@ -8,9 +8,24 @@ const ProfileForm = ({ setShowChangePasswordModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmNewPassword, setConfirmNewPassword] = useState(false);
+  const changePasswordRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (changePasswordRef.current && !changePasswordRef.current.contains(event.target)) {
+        setShowChangePasswordModal(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [changePasswordRef, setShowChangePasswordModal])
 
   return (
-    <div className="form-container bg-primary-color overflow-hidden rounded-2xl">
+    <div className="form-container bg-primary-color overflow-hidden rounded-2xl" ref={changePasswordRef}>
       <form className="sign-form work-sans !py-0 md:!px-[1em]">
         <div className="input-container">
           <label className="mb-3" htmlFor="oldPassword">

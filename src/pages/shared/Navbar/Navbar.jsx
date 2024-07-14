@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuthContext from "../../../Hooks/useAuthContext";
 import useLogOut from "../../../Hooks/useLogOut";
@@ -8,6 +8,7 @@ import "./Navbar.css";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { logOut } = useLogOut();
+  const navRef = useRef(null);
 
   let menuItems = [...document.querySelectorAll(".menu-item")];
   let options = {};
@@ -50,8 +51,23 @@ const Navbar = () => {
     });
   }, []);
 
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [navRef, setOpen])
+
   return (
-    <nav className="navbar desktop-max">
+    <nav className="navbar desktop-max" ref={navRef}>
       <div className="logo">
         Ev<span className="blue">ent</span>M<span className="blue">ang</span>e
       </div>

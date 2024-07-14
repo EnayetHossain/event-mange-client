@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { FaImage, FaUserAlt } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
@@ -12,8 +12,25 @@ const UpdateProfile = ({ setShowUpdateProfileModal }) => {
     reset();
   };
 
+  const updateProfileRef = useRef(null);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (updateProfileRef.current && !updateProfileRef.current.contains(event.target)) {
+        setShowUpdateProfileModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [updateProfileRef, setShowUpdateProfileModal])
+
   return (
-    <div className="form-container bg-primary-color overflow-hidden rounded-2xl">
+    <div className="form-container bg-primary-color overflow-hidden rounded-2xl" ref={updateProfileRef}>
       <form
         className="sign-form work-sans !py-0 md:!px-[1em]"
         onSubmit={handleSubmit(onSubmit)}
