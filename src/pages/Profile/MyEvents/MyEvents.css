@@ -3,3 +3,7 @@
   grid-template-columns: repeat(auto-fit, minmax(min(25rem, 100%), 1fr));
   gap: 2em;
 }
+
+.add-event-border{
+  border: 3px dashed rgba(var(--secondary-color), 0.5);
+}

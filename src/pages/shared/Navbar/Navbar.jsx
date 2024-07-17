@@ -67,7 +67,7 @@ const Navbar = () => {
   }, [navRef, setOpen])
 
   return (
-    <nav className="navbar desktop-max" ref={navRef}>
+    <nav className="navbar desktop-max">
       <div className="logo">
         Ev<span className="blue">ent</span>M<span className="blue">ang</span>e
       </div>
@@ -76,7 +76,7 @@ const Navbar = () => {
         <div className={`bar ${!open ? "" : "bar-active"}`}></div>
       </div>
 
-      <div className={`main-menu ${!open ? "" : "main-menu-active"}`}>
+      <div className={`main-menu ${!open ? "" : "main-menu-active"}`} ref={navRef}>
         <ul className="menu-items">
           <li className="menu-item">
             <Link to={"/"} onClick={() => setOpen(false)}>

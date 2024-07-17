@@ -33,14 +33,19 @@ html {
 
 body {
   font-size: 1.6rem;
-  /* font-family: 'Bodoni Moda', serif; */
-  font-family: "Aclonica", sans-serif;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
+  /* font-family: "Aclonica", sans-serif; */
+  font-family: "Work Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.accent-font{
+  font-family: "Aclonica", sans-serif;
+}
+
+/* .work-sans { */
+/*   font-family: "Work Sans", sans-serif; */
+/* } */
 
 p,
 a,
@@ -72,10 +77,6 @@ ul {
 
 img {
   width: 100%;
-}
-
-.work-sans {
-  font-family: "Work Sans", sans-serif;
 }
 
 .error {

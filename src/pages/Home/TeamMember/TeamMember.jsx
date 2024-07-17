@@ -17,7 +17,7 @@ const TeamMember = () => {
 
   return (
     <section className="my-[11em]">
-      <div className="text-5xl text-accent-color text-center mb-[2em]">
+      <div className="text-5xl text-accent-color text-center mb-[2em] accent-font">
         World Class Team
       </div>
 

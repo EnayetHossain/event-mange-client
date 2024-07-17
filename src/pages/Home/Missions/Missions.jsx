@@ -68,7 +68,7 @@ const Missions = () => {
     ScrollTrigger.create({
       animation: tl,
       trigger: ".mission",
-      toggleActions: "play pause resume none",
+      toggleActions: "play none none none",
       markers: false,
       start: "top 70%",
     });
@@ -123,7 +123,7 @@ const Missions = () => {
     ScrollTrigger.create({
       animation: tl2,
       trigger: ".vision",
-      toggleActions: "play pause resume none",
+      toggleActions: "play none none none",
       markers: false,
       start: "top 70%",
     });
@@ -138,7 +138,7 @@ const Missions = () => {
         </div>
 
         <div className="mission-info">
-          <h1 id="split-text">Our Mission</h1>
+          <h1 id="split-text" className="accent-font">Our Mission</h1>
           <p id="split-pera">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -154,7 +154,7 @@ const Missions = () => {
         </div>
 
         <div className="vision-info">
-          <h1 id="split-text2">Our Vision</h1>
+          <h1 id="split-text2" className="accent-font">Our Vision</h1>
           <p id="split-pera2">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text

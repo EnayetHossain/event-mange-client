@@ -4,27 +4,25 @@
 
 .search-input{
   color: rgb(var(--secondary-color));
-  box-shadow: 5px 5px 27px rgba(var(--secondary-color), 0.25);
-  border-radius: 2rem;
   padding: 1rem 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+.search-container{
+  border-radius: 2rem;
+  box-shadow: 5px 5px 27px rgba(var(--secondary-color), 0.25);
+}
+
 @media only screen and (max-width: 826px){
-  .search-input{
-    padding: 1rem 2rem;
+  .search-container{
     margin-right: 3rem;
   }
-  
-  /* .autocomplete-shadow{ */
-  /*   margin-right: 3rem; */
-  /* } */
 }
 
 @media only screen and (max-width: 640px){
-  .search-input{
+  .search-container{
     margin-right: 0;
   }
 }

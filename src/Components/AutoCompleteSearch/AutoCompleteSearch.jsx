@@ -114,6 +114,8 @@ const AutoCompleteSearch = ({
       case "Enter":
         if (activeIndex >= 0 && activeIndex < suggetions.length) {
           handleSuggetionClick(suggetions[activeIndex]);
+        } else {
+          handleSearchOnClick(inputValue);
         }
         break;
       case "Escape":
@@ -137,29 +139,45 @@ const AutoCompleteSearch = ({
     }
   }, [activeIndex, suggetions])
 
+  const handleSearchOnClick = (query) => {
+    const suggetion = { title: query }
+    onSelect(suggetion);
+    setIsFocused(false);
+  }
+
   return (
     <div className="sign-form !m-0 !p-0 work-sans relative">
-      <div className="search-input">
-        <label className="mb-3" htmlFor="search">
-          Search events
-        </label>
-        <div className="flex items-center justify-between">
-          <span className="mr-3 form-icon">
-            <IoSearch />
-          </span>
-          <input
-            className="pl-1 w-full"
-            type="search"
-            onBlur={onBlur}
-            onFocus={handleFocus}
-            value={inputValue}
-            placeholder={placeholder}
-            name="search"
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            autoComplete="off"
-          />
+      <div className="flex overflow-hidden search-container">
+        <div className="search-input w-full">
+          <label className="mb-3" htmlFor="search">
+            Search events
+          </label>
+          <div className="flex items-center justify-between">
+            <span className="mr-3 form-icon">
+              <IoSearch />
+            </span>
+            <input
+              className="pl-1 w-full"
+              type="search"
+              onBlur={onBlur}
+              onFocus={handleFocus}
+              value={inputValue}
+              placeholder={placeholder}
+              name="search"
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+              autoComplete="off"
+            />
+          </div>
         </div>
+
+        <button
+          title="Search"
+          className="bg-accent-color text-white flex justify-center items-center w-28"
+          onClick={() => handleSearchOnClick(inputValue)}
+        >
+          <IoSearch className="text-4xl font-bold" />
+        </button>
       </div>
 
       {

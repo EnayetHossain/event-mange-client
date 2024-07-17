@@ -5,6 +5,7 @@ import "./MyEvents.css";
 import SkeletonCard from "../../../Components/SkeletonCard/SkeletonCard.jsx";
 import useAxiosConfig from "../../../Hooks/useAxiosConfig";
 import AutoCompleteSearch from "../../../Components/AutoCompleteSearch/AutoCompleteSearch";
+import { RiAddCircleLine } from "react-icons/ri";
 
 const MyEvents = () => {
   const [myEvents, setMyEvents] = useState([]);
@@ -29,8 +30,6 @@ const MyEvents = () => {
   }, [axiosConfig]);
 
   const fetchSuggetions = async (query, fields = "") => {
-    console.log("fields: ", fields);
-
     try {
       const events = await axiosConfig.get(`/api/v1/events/getEventByUser?title=${query}&fields=${fields}`);
       if (events.status !== 200) {
@@ -65,10 +64,6 @@ const MyEvents = () => {
   return (
     <div className="desktop-max !mt-14">
       <div className="mb-24 flex-col items-start sm:flex-row flex justify-between sm:items-center">
-        <span className="hidden work-sans lg:inline-block font-bold text-3xl">
-          My Events
-        </span>
-
         <AutoCompleteSearch
           placeholder={"Search an event"}
           // staticData={staticData}
@@ -103,13 +98,27 @@ const MyEvents = () => {
             <SkeletonCard></SkeletonCard>
           </>
         ) : (
-          myEvents?.map((event) => (
-            <EventCard
-              key={event._id}
-              isButtonVisible={false}
-              event={event}
-            ></EventCard>
-          ))
+          myEvents.length > 0
+            ?
+            myEvents?.map((event) => (
+              <EventCard
+                key={event._id}
+                isButtonVisible={false}
+                event={event}
+              ></EventCard>
+            ))
+            :
+            <div className="flex justify-center">
+              <Link className="text-center add-event-border px-20 py-7 rounded-2xl no-underline" to={"/profile/create-event"}>
+                <div className="text-4xl font-semibold text-gray-500">You have no Event</div>
+                <div className="flex justify-center my-4">
+                  <RiAddCircleLine className="text-[6rem] text-gray-500" />
+                </div>
+                <div className="text-3xl font-semibold text-gray-500">
+                  Create An Event
+                </div>
+              </Link>
+            </div>
         )}
       </div>
     </div>

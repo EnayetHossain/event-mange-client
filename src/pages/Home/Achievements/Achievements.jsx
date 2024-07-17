@@ -9,7 +9,7 @@ const Achievements = () => {
 
   useEffect(() => {
     new SplitType(".achievements-title");
-    
+
     const tl = gsap.timeline({
       defaults: {
         duration: 2,
@@ -62,12 +62,12 @@ const Achievements = () => {
       trigger: ".achievements-container",
       start: "top 70%",
       markers: false,
-      toggleActions: "play pause resume none",
+      toggleActions: "play none none none",
     });
   }, []);
 
   return (
-    <div className="achievements-container">
+    <div className="achievements-container accent-font">
       <h4 className="achievements-title">We are BlooZoom</h4>
 
       <div>

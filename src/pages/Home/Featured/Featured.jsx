@@ -46,7 +46,7 @@ const Featured = () => {
       ScrollTrigger.create({
         animation: tl,
         trigger: ".featured-container",
-        toggleActions: "play pause resume none",
+        toggleActions: "play none none none",
         markers: false,
         start: "top 70%",
       });
@@ -72,12 +72,12 @@ const Featured = () => {
       {isFeatured && (
         <div className="featured-container">
           <div>
-            <div className="flex items-center">
+            <div className="flex items-center accent-font">
               <FaBookmark className="mr-2"></FaBookmark>
               <p>Featured Event</p>
             </div>
 
-            <h1 className="featured-name font-regular my-6 lg:mt-[4em] lg:mb-12">
+            <h1 className="featured-name font-regular my-6 lg:mt-[4em] lg:mb-12 accent-font">
               Featured event name
             </h1>
 
@@ -93,22 +93,22 @@ const Featured = () => {
             <p>Starts in...</p>
             <div className="flex items-center text-center mt-12 mb-6 lg:mt-20 lg:mb-12">
               <div className="mr-12">
-                <h1 className="time-text">{countDownValue.textDays}</h1>
+                <h1 className="time-text accent-font">{countDownValue.textDays}</h1>
                 <p>Days</p>
               </div>
 
               <div className="mr-12">
-                <h1 className="time-text">{countDownValue.textHours}</h1>
+                <h1 className="time-text accent-font">{countDownValue.textHours}</h1>
                 <p>Hours</p>
               </div>
 
               <div className="mr-12">
-                <h1 className="time-text">{countDownValue.textMinutes}</h1>
+                <h1 className="time-text accent-font">{countDownValue.textMinutes}</h1>
                 <p>Minutes</p>
               </div>
 
               <div>
-                <h1 className="time-text">{countDownValue.textSeconds}</h1>
+                <h1 className="time-text accent-font">{countDownValue.textSeconds}</h1>
                 <p>Seconds</p>
               </div>
             </div>

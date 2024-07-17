@@ -26,7 +26,7 @@ const Testimonials = () => {
 
   return (
     <section className="my-[7em] px-4">
-      <div className="text-5xl text-accent-color text-center mb-[2em]">
+      <div className="text-5xl text-accent-color text-center mb-[2em] accent-font">
         Testimonials
       </div>
 
