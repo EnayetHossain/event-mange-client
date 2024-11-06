@@ -1,0 +1,32 @@
+.event-bar-active{
+  transform: rotateZ(-45deg);
+  background-color: rgba(var(--secondary-color));
+}
+
+.event-bar-active::after {
+  width: 100% !important;
+  top: 50% !important;
+  right: 0 !important;
+  transform: rotateZ(90deg);
+  background-color: rgba(var(--secondary-color))
+}
+
+
+.event-search-bar{
+  width: min(60rem, 100%);
+}
+
+
+.top-bar{
+  display: none;
+}
+
+@media only screen and (max-width: 1071px){
+  .top-bar{
+    display: block;
+  }
+
+  .topbar-logo{
+    display: none;
+  }
+}

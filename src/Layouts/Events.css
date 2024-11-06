@@ -1,0 +1,22 @@
+.event-layout{
+  display: grid;
+  grid-template-columns: 27rem 1fr;
+}
+
+.event-overlay{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(var(--secondary-color), 0.4);
+  z-index: 10;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+@media only screen and (max-width: 1071px){
+  .event-layout{
+    grid-template-columns: 1fr;
+  }
+}

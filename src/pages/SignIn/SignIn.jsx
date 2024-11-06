@@ -24,7 +24,6 @@ const SignIn = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const isLoggedIn = await signIn(data);
     reset();
     if (isLoggedIn) {

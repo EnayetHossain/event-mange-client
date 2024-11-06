@@ -30,11 +30,6 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "/events",
-        element: <Events></Events>,
-      },
-
-      {
         path: "/profile",
         element: <PrivateRoute> <Profile></Profile> </PrivateRoute>,
         children: [
@@ -50,5 +45,11 @@ export const router = createBrowserRouter([
         ],
       },
     ],
+  },
+
+  {
+    path: "/events",
+    element: <Events></Events>,
+    errorElement: <ErrorPage></ErrorPage>
   },
 ]);

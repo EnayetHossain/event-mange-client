@@ -29,7 +29,6 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const user = localStorage.getItem("token");
     // const token = user?.split(" ")[1];
-    console.log("from auth context: ", user);
     const token = user;
 
     if (token) {
@@ -38,8 +37,6 @@ const AuthContextProvider = ({ children }) => {
       dispatch({ type: "SET_LOADING", payload: false });
     }
   }, []);
-
-  console.log("auth context state: ", state);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

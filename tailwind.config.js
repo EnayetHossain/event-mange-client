@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         "primary-color": "rgb(var(--primary-color))",
         "secondary-color": "rgb(var(--secondary-color))",
+        "secondary-800": "rgb(var(secondary-color-800))",
         "accent-color": "rgb(var(--accent-color))"
       },
     },

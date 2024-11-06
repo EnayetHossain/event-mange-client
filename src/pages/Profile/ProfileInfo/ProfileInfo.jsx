@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
+import ErrorNotification from "../../../Components/ErrorNotification/ErrorNotification";
+import useAxiosConfig from "../../../Hooks/useAxiosConfig";
 import ProfileForm from "../ProfileForm/ProfileForm";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import "./ProfileInfo.css";
@@ -9,16 +11,45 @@ import "./ProfileInfo.css";
 const ProfileInfo = () => {
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
   const [showUpdateProfileModal, setShowUpdateProfileModal] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
+  const [error, setError] = useState("");
+  const [showErrorNotification, setShowErrorNotification] = useState(false);
+  const axiosConfig = useAxiosConfig();
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const response = await axiosConfig.get("/api/v1/auth/getUserInfoById?fields=name,email");
+        setUserInfo(response.data.data)
+        setError("");
+        setShowErrorNotification(false);
+      } catch (error) {
+        setError(`${error.message}. ${error?.response?.data?.error}`);
+        setShowErrorNotification(true);
+      }
+    }
+
+    getUserInfo();
+  }, [axiosConfig]);
 
   return (
     <div className="desktop-max !mt-14">
+      {
+        (error && showErrorNotification) && (
+          <ErrorNotification
+            error={error}
+            setError={setError}
+            setOpen={setShowErrorNotification}
+          />
+        )
+      }
       <div className="work-sans font-semibold text-3xl mb-8">About me</div>
       <div className="flex items-center work-sans">
-        <FaUserAlt className="mr-3"></FaUserAlt> User Name
+        <FaUserAlt className="mr-3"></FaUserAlt> {userInfo?.name}
       </div>
 
       <div className="flex items-center work-sans my-4">
-        <MdEmail className="mr-3"></MdEmail> useremail@gamil.com
+        <MdEmail className="mr-3"></MdEmail> {userInfo?.email}
       </div>
 
       <button

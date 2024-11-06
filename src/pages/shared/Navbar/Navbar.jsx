@@ -2,6 +2,7 @@ import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuthContext from "../../../Hooks/useAuthContext";
+import useClickOutside from "../../../Hooks/useClickOutside";
 import useLogOut from "../../../Hooks/useLogOut";
 import "./Navbar.css";
 
@@ -16,6 +17,7 @@ const Navbar = () => {
   const { user } = useAuthContext();
 
   const handleLogout = () => {
+    setOpen(false)
     logOut();
   };
 
@@ -51,23 +53,11 @@ const Navbar = () => {
     });
   }, []);
 
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-  }, [navRef, setOpen])
+  // close modal on click ouside
+  useClickOutside(navRef, setOpen);
 
   return (
-    <nav className="navbar desktop-max">
+    <nav className="navbar desktop-max" ref={navRef}>
       <div className="logo">
         Ev<span className="blue">ent</span>M<span className="blue">ang</span>e
       </div>
@@ -76,7 +66,7 @@ const Navbar = () => {
         <div className={`bar ${!open ? "" : "bar-active"}`}></div>
       </div>
 
-      <div className={`main-menu ${!open ? "" : "main-menu-active"}`} ref={navRef}>
+      <div className={`main-menu ${!open ? "" : "main-menu-active"}`}>
         <ul className="menu-items">
           <li className="menu-item">
             <Link to={"/"} onClick={() => setOpen(false)}>

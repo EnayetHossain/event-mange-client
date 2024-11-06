@@ -4,13 +4,13 @@ import ProfileNav from "../ProfileNav/ProfileNav";
 import "./Profile.css";
 
 const Profile = () => {
-    return (
-        <section>
-            <ProfileCover></ProfileCover>
-            <ProfileNav></ProfileNav>
-            <Outlet></Outlet>
-        </section>
-    );
+  return (
+    <section>
+      <ProfileCover></ProfileCover>
+      <ProfileNav></ProfileNav>
+      <Outlet></Outlet>
+    </section>
+  );
 };
 
 export default Profile;

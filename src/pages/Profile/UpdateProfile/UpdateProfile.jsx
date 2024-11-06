@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { FaImage, FaUserAlt } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import { PiSignInBold } from "react-icons/pi";
+import useClickOutside from "../../../Hooks/useClickOutside";
 
 const UpdateProfile = ({ setShowUpdateProfileModal }) => {
   const { register, handleSubmit, reset } = useForm();
@@ -14,20 +15,8 @@ const UpdateProfile = ({ setShowUpdateProfileModal }) => {
 
   const updateProfileRef = useRef(null);
 
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (updateProfileRef.current && !updateProfileRef.current.contains(event.target)) {
-        setShowUpdateProfileModal(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [updateProfileRef, setShowUpdateProfileModal])
+  // close modal on click outside
+  useClickOutside(updateProfileRef, setShowUpdateProfileModal);
 
   return (
     <div className="form-container bg-primary-color overflow-hidden rounded-2xl" ref={updateProfileRef}>

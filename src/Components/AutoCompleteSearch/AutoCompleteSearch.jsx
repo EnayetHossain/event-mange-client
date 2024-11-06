@@ -1,7 +1,7 @@
-import "./AutoCompleteSearch.css";
-import { IoSearch } from "react-icons/io5";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { IoSearch } from "react-icons/io5";
 import AutoCompleteSuggetions from "../AutoCompleteSuggetions/AutoCompleteSuggetions";
+import "./AutoCompleteSearch.css";
 
 const AutoCompleteSearch = ({
   placeholder = "",
@@ -9,10 +9,10 @@ const AutoCompleteSearch = ({
   fetchSuggetions,
   dataKey = "",
   customLoading = "Loading..",
-  onSelect = () => { },
-  onChange = () => { },
-  onBlur = () => { },
-  onFocus = () => { },
+  onSelect = () => {},
+  onChange = () => {},
+  onBlur = () => {},
+  onFocus = () => {},
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [suggetions, setSuggetions] = useState([]);
@@ -25,14 +25,14 @@ const AutoCompleteSearch = ({
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-    onChange(event.target.value)
+    onChange(event.target.value);
 
     if (event.target.value.length <= 0) {
       setIsFocused(false);
     } else if (event.target.value.length >= 1) {
       setIsFocused(true);
     }
-  }
+  };
 
   // get suggetions from database
   const getSuggetions = useCallback(async () => {
@@ -61,16 +61,14 @@ const AutoCompleteSearch = ({
     } else {
       setSuggetions([]);
     }
-  }, [staticData, fetchSuggetions, inputValue])
-
+  }, [staticData, fetchSuggetions, inputValue]);
 
   // debouce implementation
   useEffect(() => {
     const getData = setTimeout(getSuggetions, 300);
 
-    return () => clearTimeout(getData)
-  }, [getSuggetions])
-
+    return () => clearTimeout(getData);
+  }, [getSuggetions]);
 
   // get events data based on searched query
   const handleSuggetionClick = (suggetion) => {
@@ -78,17 +76,20 @@ const AutoCompleteSearch = ({
     onSelect(suggetion);
     setSuggetions([]);
     setIsFocused(false);
-  }
+  };
 
   const handleFocus = (event) => {
     setIsFocused(true);
     onFocus(event);
-  }
+  };
 
   // close suggetions list if click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         setIsFocused(false);
       }
     };
@@ -105,11 +106,15 @@ const AutoCompleteSearch = ({
     switch (event.key) {
       case "ArrowDown":
         event.preventDefault();
-        setActiveIndex((prevIndex) => prevIndex === suggetions.length - 1 ? 0 : prevIndex + 1);
+        setActiveIndex((prevIndex) =>
+          prevIndex === suggetions.length - 1 ? 0 : prevIndex + 1
+        );
         break;
       case "ArrowUp":
         event.preventDefault();
-        setActiveIndex((prevIndex) => prevIndex === 0 ? suggetions.length - 1 : prevIndex - 1);
+        setActiveIndex((prevIndex) =>
+          prevIndex === 0 ? suggetions.length - 1 : prevIndex - 1
+        );
         break;
       case "Enter":
         if (activeIndex >= 0 && activeIndex < suggetions.length) {
@@ -124,26 +129,30 @@ const AutoCompleteSearch = ({
       default:
         break;
     }
-  }
+  };
 
   useEffect(() => {
-    if (containerRef.current && activeIndex >= 0 && activeIndex < suggetions.length) {
+    if (
+      containerRef.current &&
+      activeIndex >= 0 &&
+      activeIndex < suggetions.length
+    ) {
       const activeElement = containerRef.current.children[activeIndex];
 
       if (activeElement) {
         activeElement.scrollIntoView({
           behavior: "smooth",
-          block: "nearest"
-        })
+          block: "nearest",
+        });
       }
     }
-  }, [activeIndex, suggetions])
+  }, [activeIndex, suggetions]);
 
   const handleSearchOnClick = (query) => {
-    const suggetion = { title: query }
+    const suggetion = { title: query };
     onSelect(suggetion);
     setIsFocused(false);
-  }
+  };
 
   return (
     <div className="sign-form !m-0 !p-0 work-sans relative">
@@ -180,25 +189,24 @@ const AutoCompleteSearch = ({
         </button>
       </div>
 
-      {
-        (isFocused && (suggetions.length > 0 || loading || error)) && (
-          <ul
-            ref={containerRef}
-            className="absolute top-full left-0 bg-white w-full rounded-[2rem] p-4 mt-4 autocomplete-shadow max-h-[24rem] overflow-y-auto">
-            {error && <span className="error">{error}</span>}
-            {loading && <span>{customLoading}</span>}
-            <AutoCompleteSuggetions
-              dataKey={dataKey}
-              highlight={inputValue}
-              suggetions={suggetions}
-              onSuggetionClick={handleSuggetionClick}
-              activeIndex={activeIndex}
-            />
-          </ul>
-        )
-      }
+      {isFocused && (suggetions.length > 0 || loading || error) && (
+        <ul
+          ref={containerRef}
+          className="absolute top-full left-0 bg-white w-full rounded-[2rem] p-4 mt-4 autocomplete-shadow max-h-[24rem] overflow-y-auto"
+        >
+          {error && <span className="error">{error}</span>}
+          {loading && <span>{customLoading}</span>}
+          <AutoCompleteSuggetions
+            dataKey={dataKey}
+            highlight={inputValue}
+            suggetions={suggetions}
+            onSuggetionClick={handleSuggetionClick}
+            activeIndex={activeIndex}
+          />
+        </ul>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default AutoCompleteSearch;
