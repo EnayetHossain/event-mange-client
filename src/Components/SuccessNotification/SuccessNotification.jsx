@@ -11,13 +11,13 @@ const SuccessNotification = ({ message, setMessage, setOpen }) => {
   useEffect(() => {
     let timeOut;
 
-    if (message) timeOut = setTimeout(handleClose, 10 * 1000);
+    if (message) timeOut = setTimeout(handleClose, 5 * 1000);
 
     return () => clearTimeout(timeOut)
   }, [handleClose, message]);
 
   return (
-    <div className="fixed top-0 success-container bg-green-500 flex justify-between items-center text-primary-color">
+    <div className="fixed top-0 success-container bg-green-500 flex justify-between items-center text-primary-color rounded-lg">
       <div>
         {
           message

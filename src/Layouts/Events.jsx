@@ -18,7 +18,7 @@ const Events = () => {
   useEffect(() => {
     const getAllEvents = async () => {
       try {
-        const events = await axiosConfig.get("/api/v1/events");
+        const events = await axiosConfig.get("/api/v1/events?fields=title,eventDate,eventPhoto");
         setEvents(events.data.data);
         setLoading(false);
         setError("");
@@ -57,7 +57,7 @@ const Events = () => {
           setOpenSidebar={setOpenSidebar}
           openSidebar={openSidebar}
         ></Topbar>
-        <div className="card-container mx-[1.5rem]">
+        <div className="card-container mx-[1.5rem] mb-12">
 
           {loading ? (
             <>

@@ -19,7 +19,7 @@ const MyEvents = () => {
   useEffect(() => {
     const getAllMyEvents = async () => {
       try {
-        const events = await axiosConfig.get("/api/v1/events/getEventByUser");
+        const events = await axiosConfig.get("/api/v1/events/getEventByUser?fields=title,eventDate,eventPhoto");
         setMyEvents(events.data.data);
         setLoading(false);
         setError("");
@@ -64,7 +64,7 @@ const MyEvents = () => {
   const handleOnChange = async (suggetion) => {
     if (!suggetion) {
       try {
-        const events = await axiosConfig.get("api/v1/events/getEventByUser");
+        const events = await axiosConfig.get("api/v1/events/getEventByUser?fields=title,eventDate,eventPhoto");
         setMyEvents(events.data.data);
         setLoading(false);
         setError("");

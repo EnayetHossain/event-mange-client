@@ -1,6 +1,7 @@
 import { FaUserAlt } from "react-icons/fa";
 import { MdEmojiEvents } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 import "./ProfileNav.css";
 
 const ProfileNav = () => {
@@ -15,7 +16,7 @@ const ProfileNav = () => {
     <nav className="desktop-max flex justify-start items-center !py-5 !mt-3">
       <Link
         to={"/profile"}
-        className={`no-underline flex justify-start items-center mx-10 font-semibold ${
+        className={`no-underline flex justify-start items-center font-semibold ${
           splitLocation[splitLocation.length - 1] === "profile"
             ? "text-accent-color"
             : "text-secondary-color"
@@ -25,7 +26,7 @@ const ProfileNav = () => {
       </Link>
       <Link
         to={"/profile/my-events"}
-        className={`no-underline flex justify-start items-center font-semibold ${
+        className={`no-underline flex justify-start items-center mx-10 font-semibold ${
           splitLocation[splitLocation.length - 1] === "my-events"
             ? "text-accent-color"
             : "text-secondary-color"
@@ -33,6 +34,18 @@ const ProfileNav = () => {
       >
         {" "}
         <MdEmojiEvents className="text-3xl mr-2"></MdEmojiEvents> My Events
+      </Link>
+
+      <Link
+        to={"/profile/favorites"}
+        className={`no-underline flex justify-start items-center font-semibold ${
+          splitLocation[splitLocation.length - 1] === "favorites"
+            ? "text-accent-color"
+            : "text-secondary-color"
+        }`}
+      >
+        {" "}
+        <FaHeart className="text-3xl mr-2"></FaHeart> Favorites
       </Link>
     </nav>
   );

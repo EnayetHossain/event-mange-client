@@ -11,14 +11,14 @@ const ErrorNotification = ({ error, setError, setOpen }) => {
   useEffect(() => {
     let timeOut;
 
-    if (error) timeOut = setTimeout(handleClose, 10 * 1000);
+    if (error) timeOut = setTimeout(handleClose, 5 * 1000);
 
     return () => clearTimeout(timeOut);
 
   }, [error, handleClose])
 
   return (
-    <div className="fixed top-0 bg-red-500 text-primary-color error-container flex items-center justify-between rounded-lg w-full">
+    <div className="fixed top-0 bg-red-500 text-primary-color error-container flex items-center justify-between rounded-lg">
       <div>
         {
           error

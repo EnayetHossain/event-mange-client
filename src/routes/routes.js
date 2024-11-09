@@ -9,6 +9,7 @@ import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import ErrorPage from "../pages/shared/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute.jsx";
+import Favorties from "../pages/Profile/Favorites/Favorites";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,11 @@ export const router = createBrowserRouter([
             path: "/profile/my-events",
             element: <MyEvents></MyEvents>,
           },
+
+          {
+            path: "/profile/favorites",
+            element: <Favorties></Favorties>
+          }
         ],
       },
     ],

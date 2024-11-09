@@ -74,23 +74,20 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
       {
         !user && (
           <>
+            <hr className="w-full h-[2px] bg-gray-300" />
             <Link className="no-underline py-1 text-gray-600 event-link sidebar-links" to={"/sign-in"}>
-              <div>
-                <div className="flex items-center">
-                  <LuLogIn />
-                  <div className="ml-2">Sign In</div>
-                </div>
-                <FaChevronRight className="right-arrow" />
+              <div className="flex items-center">
+                <LuLogIn />
+                <div className="ml-2">Sign In</div>
               </div>
+              <FaChevronRight className="right-arrow" />
             </Link>
             <Link className="no-underline py-1 text-gray-600 event-link sidebar-links" to={"/sign-up"}>
               <div className="flex items-center">
-                <div>
-                  <LuLogIn />
-                  <div className="ml-2">Sign In</div>
-                </div>
-                <FaChevronRight  className="right-arrow" />
-              </div>  
+                <LuLogIn />
+                <div className="ml-2">Sign Up</div>
+              </div>
+              <FaChevronRight  className="right-arrow" />
             </Link>
           </>
         )
@@ -121,6 +118,11 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
         {
           user && (
             <div className="flex flex-col items-start mt-10">
+              <button onClick={logOut} className="w-full bg-black text-white mb-7 flex justify-start items-center px-5 py-3 rounded-lg">
+                <LuLogOut />
+                <div className="ml-4 font-semibold">Logout</div>
+              </button>
+
               <div className="flex justify-center items-center">
                 <div className="w-[6rem] h-[6rem] overflow-hidden rounded-full">
                   <img src={"/images/image-1.jpg"} alt={"profile"} className="w-full h-full object-cover" />
@@ -131,11 +133,6 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
                   <div className="text-[1.2rem]">{userInfo?.email}</div>
                 </div>
               </div>
-
-              <button onClick={logOut} className="bg-gray-300 w-full mt-4">
-                <LuLogOut />
-                <div>Logout</div>
-              </button>
             </div>
           )
         }
@@ -157,7 +154,8 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
           </button>
         </div>
 
-        <div>
+        <div className="flex flex-col justify-between h-[97%]">
+          <div>
           <h1 className="font-semibold text-3xl mb-3">Navigation</h1>
           <nav className="flex flex-col items-start">
             {navLinks}
@@ -167,6 +165,11 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
         {
           user && (
             <div className="flex flex-col items-start mt-10">
+              <button onClick={logOut} className="w-full bg-black text-white mb-7 flex justify-start items-center px-5 py-3 rounded-lg">
+                <LuLogOut />
+                <div className="ml-4 font-semibold">Logout</div>
+              </button>
+
               <div className="flex justify-center items-center">
                 <div className="w-[6rem] h-[6rem] overflow-hidden rounded-full">
                   <img src={"/images/image-1.jpg"} alt={"profile"} className="w-full h-full object-cover" />
@@ -177,11 +180,10 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
                   <div className="text-[1.2rem]">{userInfo?.email}</div>
                 </div>
               </div>
-
-              <button onClick={logOut} className="bg-gray-300 w-full mt-4">Logout</button>
             </div>
           )
         }
+        </div>
       </div>
 
     </div >
