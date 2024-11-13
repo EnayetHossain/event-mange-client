@@ -102,7 +102,7 @@ const MyEvents = () => {
 
         <Link
           className="min-w-max mt-6 sm:mt-0 no-underline bg-accent-color text-primary-color px-5 py-4 font-semibold rounded-2xl"
-          to={"/profile/create-event"}
+          to={"/create-event"}
         >
           Create an Event
         </Link>
@@ -133,7 +133,7 @@ const MyEvents = () => {
           <div className="flex justify-center">
             <Link
               className="text-center add-event-border px-20 py-7 rounded-2xl no-underline"
-              to={"/profile/create-event"}
+              to={"/create-event"}
             >
               <div className="text-4xl font-semibold text-gray-500">
                 You have no Event

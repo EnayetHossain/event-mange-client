@@ -50,7 +50,7 @@ const Favorites = () => {
             ></EventCard>
           ))
           :
-          <div className="text-center text-gray-500 text-4xl font-medium">Add to some events to your favorites to see them here</div>
+          <div className="text-center text-gray-500 text-4xl font-medium">Add some events to your favorites to see them here</div>
       }
     </div>
   );

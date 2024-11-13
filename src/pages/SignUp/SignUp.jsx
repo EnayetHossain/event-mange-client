@@ -9,11 +9,14 @@ import { Link } from "react-router-dom";
 import useSignUp from "../../Hooks/useSignUp";
 import "./SignUp.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import ErrorNotification from "../../Components/ErrorNotification/ErrorNotification";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { error, loading, signUp } = useSignUp();
+  const [profileFile, setProfileFile] = useState(null);
+  const [coverFile, setCoverFile] = useState(null);
+  const { error, setError, showErrorNotification, setShowErrorNotification, loading, signUp } = useSignUp();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,8 +30,32 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
+  const onChangeProfilePhoto = (event) =>{
+    setProfileFile(event.target.files[0]);
+  }
+
+  const onChangeCoverPhoto = (event) =>{
+    setCoverFile(event.target.files[0]);
+  }
+
   const onSubmit = async (data) => {
-    const isLoggedIn = await signUp(data);
+    const formData = new FormData();
+
+    //NOTE: If you console log the form data you will see an empty object but it accually contains the data you have appended. And surprisingly that is a normal behavior of form data
+    if(profileFile){
+      formData.append("profilePhoto", profileFile);
+    }
+
+    if(coverFile){
+      formData.append("coverPhoto", coverFile);
+    }
+
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("confirmPassword", data.confirmPassword);
+
+    const isLoggedIn = await signUp(formData);
     reset();
     if (isLoggedIn) {
       navigate(from, { replace: true });
@@ -37,6 +64,13 @@ const SignUp = () => {
 
   return (
     <div className="form-container">
+      {
+        (error && showErrorNotification) && <ErrorNotification
+          error={error}
+          setError={setError}
+          setOpen={setShowErrorNotification}
+        />
+      }
       <form className="sign-form work-sans" onSubmit={handleSubmit(onSubmit)}>
         <div className="input-container">
           <label className="mb-3" htmlFor="name">
@@ -141,9 +175,10 @@ const SignUp = () => {
             <span className="mr-3 form-icon">
               <FaImage></FaImage>
             </span>
-            <input type="file" name="profilePhoto" />
+            <input type="file" {...register("profilePhoto", {required: false})} onChange={onChangeProfilePhoto} />
           </div>
         </div>
+        {error && <span className="error mb-7">{error}</span>}
 
         <div className="input-container">
           <label className="mb-3" htmlFor="coverPhoto">
@@ -153,16 +188,15 @@ const SignUp = () => {
             <span className="mr-3 form-icon">
               <FaImage></FaImage>
             </span>
-            <input type="file" name="coverPhoto" />
+            <input type="file" {...register("coverPhoto", {required: false})} onChange={onChangeCoverPhoto} />
           </div>
         </div>
-
         {error && <span className="error mb-7">{error}</span>}
 
         <button
           type="submit"
           disabled={loading}
-          className="bg-accent-color text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center w-full font-medium"
+          className={`py-5 text-center rounded-2xl text-3xl flex justify-center items-center w-full font-medium ${loading ? "disabled-btn" : "normal-btn cursor-pointer"}`}
         >
           Sign Up
           <span className="ml-5">

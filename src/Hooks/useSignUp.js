@@ -3,17 +3,22 @@ import useAuthContext from "./useAuthContext";
 import useAxiosConfig from "../Hooks/useAxiosConfig.js";
 
 const useSignUp = () => {
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showErrorNotification, setShowErrorNotification] = useState(false);
   const { dispatch } = useAuthContext();
   const axiosConfig = useAxiosConfig();
 
   const signUp = async (data) => {
-    setLoading(true);
-    setError(null);
-
     try {
-      const response = await axiosConfig.post("/api/v1/auth/sign-up", data);
+      setShowErrorNotification(false);
+      setLoading(true);
+      setError("");
+      const response = await axiosConfig.post("/api/v1/auth/sign-up", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
+      });
       const jsonData = response.data;
 
       localStorage.setItem("token", `${jsonData.token}`);
@@ -23,12 +28,13 @@ const useSignUp = () => {
       return true;
     } catch (error) {
       setLoading(false);
+      setShowErrorNotification(true);
       setError(error.response ? error.response.data.error : "Network error");
       return false;
     }
   };
 
-  return { error, loading, signUp };
+  return { error, setError, showErrorNotification, setShowErrorNotification, loading, signUp };
 };
 
 export default useSignUp;

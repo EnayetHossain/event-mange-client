@@ -10,6 +10,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import ErrorPage from "../pages/shared/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute.jsx";
 import Favorties from "../pages/Profile/Favorites/Favorites";
+import CreateEvent from "../pages/CreateEvent/CreateEvent";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ export const router = createBrowserRouter([
       },
 
       {
+        path: "/create-event",
+        element: <PrivateRoute><CreateEvent></CreateEvent></PrivateRoute>
+      },
+
+      {
         path: "/profile",
         element: <PrivateRoute> <Profile></Profile> </PrivateRoute>,
         children: [
@@ -47,7 +53,7 @@ export const router = createBrowserRouter([
           {
             path: "/profile/favorites",
             element: <Favorties></Favorties>
-          }
+          },
         ],
       },
     ],

@@ -1,0 +1,10 @@
+.normal-btn{
+  background-color: rgba(var(--accent-color));
+  color: rgba(var(--primary-color));
+}
+
+.disabled-btn{
+  background-color: rgba(var(--accent-color), 0.7);
+  color: rgba(var(--primary-color), 0.7);
+  cursor: not-allowed;
+}
