@@ -7,10 +7,11 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import useSignIn from "../../Hooks/useSignIn";
 import { useLocation, useNavigate } from "react-router-dom";
+import ErrorNotification from "../../Components/ErrorNotification/ErrorNotification";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { error, loading, signIn } = useSignIn();
+  const { error, setError, showErrorNotification, setShowErrorNotification, loading, signIn } = useSignIn();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -33,6 +34,13 @@ const SignIn = () => {
 
   return (
     <div className="form-container">
+      {
+        (error && showErrorNotification) && <ErrorNotification
+          error={error}
+          setError={setError}
+          setOpen={setShowErrorNotification}
+        />
+      }
       <form className="sign-form work-sans" onSubmit={handleSubmit(onSubmit)}>
         <div className="input-container">
           <label className="mb-3" htmlFor="email">
@@ -80,7 +88,7 @@ const SignIn = () => {
         <button
           type="submit"
           disabled={loading}
-          className="bg-accent-color text-primary-color py-5 text-center rounded-2xl text-3xl cursor-pointer flex justify-center items-center w-full font-medium"
+          className={`py-5 text-center rounded-2xl text-3xl flex justify-center items-center w-full font-medium ${loading ? "disabled-btn" : "normal-btn cursor-pointer"}`}
         >
           Sign In
           <span className="ml-5">

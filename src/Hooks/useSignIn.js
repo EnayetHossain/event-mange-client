@@ -3,16 +3,18 @@ import useAuthContext from "./useAuthContext";
 import useAxiosConfig from "../Hooks/useAxiosConfig.js";
 
 const useSignIn = () => {
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showErrorNotification, setShowErrorNotification] = useState(false);
   const { dispatch } = useAuthContext();
   const axiosConfig = useAxiosConfig();
 
   const signIn = async (data) => {
-    setLoading(true);
-    setError(null);
-
     try {
+      setShowErrorNotification(false);
+      setLoading(true);
+      setError("");
+
       const response = await axiosConfig.post("/api/v1/auth/sign-in", data);
       const jsonData = response.data;
 
@@ -23,12 +25,13 @@ const useSignIn = () => {
       return true;
     } catch (error) {
       setLoading(false);
+      setShowErrorNotification(true);
       setError(error.response ? error.response.data.error : "Network error");
       return false;
     }
   };
 
-  return { error, loading, signIn };
+  return { error, setError, showErrorNotification, setShowErrorNotification, loading, signIn };
 };
 
 export default useSignIn;
