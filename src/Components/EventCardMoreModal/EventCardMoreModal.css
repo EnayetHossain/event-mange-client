@@ -1,0 +1,18 @@
+.btn-group{
+  width: min(20rem, 100%);
+}
+
+.edit-btn, .delete-btn{
+  color: rgba(var(--secondary-color), 0.7);
+  padding: 0.3em;
+}
+
+.edit-btn:hover{
+  background-color: rgba(var(--accent-color), 0.2);
+  color: rgba(var(--accent-color));
+}
+
+.delete-btn:hover{
+  background-color: rgba(var(--red-accent-color), 0.2);
+  color: rgba(var(--red-accent-color));
+}

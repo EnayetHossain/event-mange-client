@@ -11,6 +11,7 @@ import ErrorPage from "../pages/shared/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute.jsx";
 import Favorties from "../pages/Profile/Favorites/Favorites";
 import CreateEvent from "../pages/CreateEvent/CreateEvent";
+import EditEvent from "../pages/EditEvent/EditEvent";
 
 export const router = createBrowserRouter([
   {
@@ -32,8 +33,13 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "/create-event",
+        path: "/create-event/",
         element: <PrivateRoute><CreateEvent></CreateEvent></PrivateRoute>
+      },
+
+      {
+        path: "/edit-event/:id",
+        element: <PrivateRoute><EditEvent></EditEvent></PrivateRoute>
       },
 
       {

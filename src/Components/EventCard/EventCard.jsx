@@ -4,27 +4,31 @@ import SliceText from "../../Utils/SliceText";
 import "./EventCard.css";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useAxiosConfig from "../../Hooks/useAxiosConfig";
 import ErrorNotification from "../ErrorNotification/ErrorNotification";
 import SuccessNotification from "../SuccessNotification/SuccessNotification";
-import { IoMdMore } from "react-icons/io";
+import EventCardMoreModal from "../EventCardMoreModal/EventCardMoreModal";
+import useClickOutside from "../../Hooks/useClickOutside";
 
 const EventCard = ({ isButtonVisible, event, isEditable }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [error, setError] = useState("");
   const [showSuccessNotificaion, setShowSuccessNotification] = useState(false);
   const [showErrorNotification, setShowErrorNotification] = useState(false);
+  const [openMoreModal, setOpenMoreModal] = useState(false);
   const [data, setData] = useState("");
+
+  const moreModalRef = useRef(null);
 
   const axiosConfig = useAxiosConfig();
 
-  const checkIfExistsInFavorite = useCallback(async ()=>{
+  const checkIfExistsInFavorite = useCallback(async () => {
     try {
       // trust issue
-      if(event._id){
+      if (event._id) {
         const response = await axiosConfig.get(`/api/v1/favorite/${event._id}`)
-        if(response.status === 200){
+        if (response.status === 200) {
           setIsFavorite(true);
         }
       }
@@ -33,7 +37,7 @@ const EventCard = ({ isButtonVisible, event, isEditable }) => {
     }
   }, [event._id, axiosConfig]);
 
-  useEffect(()=>{
+  useEffect(() => {
     checkIfExistsInFavorite();
   }, [checkIfExistsInFavorite])
 
@@ -44,17 +48,17 @@ const EventCard = ({ isButtonVisible, event, isEditable }) => {
 
       const response = await axiosConfig.post(`/api/v1/favorite/${id}`);
 
-      if(response.status === 201){
+      if (response.status === 201) {
         setData("Added to your favorite list");
         setIsFavorite(true);
       }
 
-      if(response.status === 200){
+      if (response.status === 200) {
         setData("Removed from you favorite list")
         setIsFavorite(false);
       }
 
-      if(response.data.status === "success"){
+      if (response.data.status === "success") {
         setShowSuccessNotification(true);
       }
 
@@ -64,8 +68,10 @@ const EventCard = ({ isButtonVisible, event, isEditable }) => {
     }
   }
 
+  useClickOutside(moreModalRef, setOpenMoreModal);
+
   return (
-    <div className="rounded-2xl overflow-hidden p-7 card">
+    <div className="rounded-2xl p-7 card relative">
       {
         (error && showErrorNotification) && (
           <ErrorNotification
@@ -108,26 +114,29 @@ const EventCard = ({ isButtonVisible, event, isEditable }) => {
           {
             //TODO: add a modal on click on the three dot to delete or edit the event
             isEditable && (
-              <button className="w-[1.8em] h-[1.8em] rounded-full flex justify-center items-center hover:bg-gray-200">
-                <IoMdMore className="text-4xl" />
-              </button> 
+              <EventCardMoreModal
+                openMoreModal={openMoreModal}
+                setOpenMoreModal={setOpenMoreModal}
+                moreModalRef={moreModalRef}
+                eventId={event._id}
+              />
             )
           }
         </div>
       </div>
 
       {isButtonVisible && (
-       <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center">
           <button className="no-underline bg-accent-color text-primary-color px-5 py-3 mt-4 font-semibold rounded-2xl">
             Buy ticket
           </button>
 
-          <div className="cursor-pointer" title="Add to favorite" onClick={()=> addToFavorite(event._id)}>
+          <div className="cursor-pointer" title="Add to favorite" onClick={() => addToFavorite(event._id)}>
             {
               isFavorite ? <FaHeart className="text-red-500 text-3xl" /> : <FaRegHeart className="text-3xl" />
             }
           </div>
-        </div> 
+        </div>
       )}
     </div>
   );

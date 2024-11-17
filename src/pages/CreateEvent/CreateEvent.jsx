@@ -13,7 +13,7 @@ import { FaMoneyCheck } from "react-icons/fa6";
 import { FaTicketAlt } from "react-icons/fa";
 import { MdEmojiEvents } from "react-icons/md";
 
-const CreateEvent = ()=>{
+const CreateEvent = () => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -24,20 +24,20 @@ const CreateEvent = ()=>{
   const axiosConfig = useAxiosConfig();
 
   const {
-      register,
-      handleSubmit,
-      reset,
-      formState: { errors },
-    } = useForm();
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const onFileChange = (event)=>{
+  const onFileChange = (event) => {
     setFile(event.target.files[0]);
   }
 
-  const createEvent = async (data)=>{
+  const createEvent = async (data) => {
     const formData = new FormData();
 
-    if(file){
+    if (file) {
       formData.append("eventPhoto", file);
     }
 
@@ -60,7 +60,7 @@ const CreateEvent = ()=>{
       });
       setLoading(false);
 
-      if(response.data.event){
+      if (response.data.event) {
         reset();
         setMessage("Event Created Successfully");
         setShowSuccessNotification(true);
@@ -117,14 +117,14 @@ const CreateEvent = ()=>{
           <span className="mr-3 form-icon mt-1">
             <CgDetailsMore></CgDetailsMore>
           </span>
-          <textarea className="w-full border-none outline-transparent" placeholder="Event Description" cols={4} rows={4} {...register("eventDescription", {required: true})}></textarea>
+          <textarea className="w-full border-none outline-transparent" placeholder="Event Description" cols={4} rows={4} {...register("eventDescription", { required: true })}></textarea>
         </div>
       </div>
       {errors.eventDescription && <span className="error">Description is required</span>}
 
       <div className="input-container">
         <label className="mb-3" htmlFor="name">
-          Event Date 
+          Event Date
         </label>
         <div className="flex items-center justify-between">
           <span className="mr-3 form-icon">
@@ -175,7 +175,7 @@ const CreateEvent = ()=>{
 
       <div className="input-container">
         <label className="mb-3" htmlFor="name">
-          Tickets 
+          Tickets
         </label>
         <div className="flex items-center justify-between">
           <span className="mr-3 form-icon">
@@ -198,7 +198,7 @@ const CreateEvent = ()=>{
           <span className="mr-3 form-icon">
             <FaImage></FaImage>
           </span>
-          <input type="file" {...register("eventPhoto", {required: true})} onChange={onFileChange} />
+          <input type="file" {...register("eventPhoto", { required: true })} onChange={onFileChange} />
         </div>
       </div>
       {errors.eventPhoto && <span className="error mb-7">Event photo is required</span>}
