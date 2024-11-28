@@ -8,6 +8,8 @@ import { IoLocationSharp } from "react-icons/io5";
 import { MdEmojiEvents, MdTitle } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import ErrorNotification from "../../Components/ErrorNotification/ErrorNotification";
+import FullScreenImageModal from "../../Components/FullScreenImageModal/FullScreenImageModal";
+import SkeletonForm from "../../Components/SkeletonForm/SkeletonForm";
 import SuccessNotification from "../../Components/SuccessNotification/SuccessNotification";
 import useAxiosConfig from "../../Hooks/useAxiosConfig";
 
@@ -25,6 +27,7 @@ const EditEvent = () => {
 	const [showErrorNotification, setShowErrorNotification] = useState(false);
 	const [file, setFile] = useState(null);
 	const [previewFile, setPreviewFile] = useState(null);
+	const [showImageModal, setShowImageModal] = useState(false);
 
 	useEffect(() => {
 		const getEventData = async () => {
@@ -69,6 +72,7 @@ const EditEvent = () => {
 	const handleUpdateEvent = async (data) => {
 		const formData = new FormData();
 
+		//NOTE: If you console log the form data you will see an empty object but it accually contains the data you have appended. And surprisingly that is a normal behavior of form data
 		if (file) formData.append("eventPhoto", file);
 		if (data.eventTitle !== eventData.title) formData.append("eventTitle", data.eventTitle);
 		if (data.eventDescription !== eventData.description) formData.append("eventDescription", data.eventDescription);
@@ -116,11 +120,15 @@ const EditEvent = () => {
 				/>
 			}
 
+			{
+				showImageModal && <FullScreenImageModal setShowImageModal={setShowImageModal} imageUrl={previewFile ? previewFile : eventData?.eventPhoto} />
+			}
+
 			<div>
 				{
 					loadingEvent
 						?
-						<div>loading...</div>
+						<SkeletonForm />
 						:
 						<form className="sign-form work-sans" onSubmit={handleSubmit(handleUpdateEvent)}>
 							<div className="input-container">
@@ -249,7 +257,7 @@ const EditEvent = () => {
 									/>
 								</div>
 
-								<div className="w-48 h-48 overflow-hidden">
+								<div className="w-48 h-48 overflow-hidden ml-4 mt-4 cursor-pointer" onClick={() => setShowImageModal(true)}>
 									<img src={previewFile ? previewFile : eventData?.eventPhoto} alt={eventData.title} className="w-full h-full object-contain" />
 								</div>
 							</div>

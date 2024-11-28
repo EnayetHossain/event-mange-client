@@ -12,6 +12,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { FaMoneyCheck } from "react-icons/fa6";
 import { FaTicketAlt } from "react-icons/fa";
 import { MdEmojiEvents } from "react-icons/md";
+import FullScreenImageModal from "../../Components/FullScreenImageModal/FullScreenImageModal";
 
 const CreateEvent = () => {
   const [file, setFile] = useState(null);
@@ -20,6 +21,8 @@ const CreateEvent = () => {
   const [message, setMessage] = useState("");
   const [showErrorNotification, setShowErrorNotification] = useState(false);
   const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+  const [previewFile, setPreviewFile] = useState(null);
+  const [showImageModal, setShowImageModal] = useState(false);
 
   const axiosConfig = useAxiosConfig();
 
@@ -32,6 +35,7 @@ const CreateEvent = () => {
 
   const onFileChange = (event) => {
     setFile(event.target.files[0]);
+    setPreviewFile(URL.createObjectURL(event.target.files[0]));
   }
 
   const createEvent = async (data) => {
@@ -92,6 +96,11 @@ const CreateEvent = () => {
           setOpen={setShowSuccessNotification}
         />
       }
+
+      {
+        showImageModal && <FullScreenImageModal setShowImageModal={setShowImageModal} imageUrl={previewFile} />
+      }
+
       <div className="input-container">
         <label className="mb-3" htmlFor="name">
           Title
@@ -200,6 +209,12 @@ const CreateEvent = () => {
           </span>
           <input type="file" {...register("eventPhoto", { required: true })} onChange={onFileChange} />
         </div>
+
+        {
+          previewFile && <div className="w-48 h-48 overflow-hidden ml-4 mt-4 cursor-pointer" onClick={() => setShowImageModal(true)}>
+            <img src={previewFile} alt={"event"} className="w-full h-full object-contain" />
+          </div>
+        }
       </div>
       {errors.eventPhoto && <span className="error mb-7">Event photo is required</span>}
 

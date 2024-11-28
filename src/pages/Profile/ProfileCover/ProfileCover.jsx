@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ErrorNotification from "../../../Components/ErrorNotification/ErrorNotification";
+import FullScreenImageModal from "../../../Components/FullScreenImageModal/FullScreenImageModal";
 import useAxiosConfig from "../../../Hooks/useAxiosConfig";
 import "./ProfileCover.css";
 
@@ -8,6 +9,7 @@ const ProfileCover = () => {
   const axiosConfig = useAxiosConfig();
   const [error, setError] = useState("");
   const [showErrorNotification, setShowErrorNotification] = useState(false);
+  const [showProfileImage, setShowProfileImage] = useState(false);
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -36,13 +38,18 @@ const ProfileCover = () => {
           />
         )
       }
+
+      {
+        showProfileImage && <FullScreenImageModal setShowImageModal={setShowProfileImage} imageUrl={userInfo?.profilePhoto} />
+      }
+
       <span className="work-sans font-bold text-4xl inline-block my-10">
         Profile Information
       </span>
 
       <div className="overflow-hidden h-[20em] rounded-2xl relative text-primary-color">
         <div className="absolute w-full h-full profile-photo flex flex-col justify-center items-center">
-          <div className="w-[12rem] h-[12rem] overflow-hidden rounded-full">
+          <div className="w-[12rem] h-[12rem] overflow-hidden rounded-full cursor-pointer" onClick={() => setShowProfileImage(true)}>
             <img src={userInfo?.profilePhoto} alt="Profile" />
           </div>
 

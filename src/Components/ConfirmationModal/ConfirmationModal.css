@@ -1,0 +1,27 @@
+.back-drop {
+  background-color: rgba(var(--secondary-color), 0.5);
+  display: grid;
+  place-items: center;
+}
+
+.clsoe-btn {
+  border: 1px solid rgba(var(--secondary-color), 0.4)
+}
+
+.delete-icon {
+  background-color: rgba(var(--red-accent-color), 0.25);
+  width: max-content;
+}
+
+.delete-icon-disable {
+  background-color: rgba(var(--red-accent-color), 0.5);
+  cursor: not-allowed;
+}
+
+.confimation-modal-content {
+  width: min(40rem, 100%);
+}
+
+.cancel-btn {
+  outline: 2px solid rgba(var(--secondary-color), 0.2);
+}

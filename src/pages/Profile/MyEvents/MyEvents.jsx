@@ -34,6 +34,15 @@ const MyEvents = () => {
     getAllMyEvents();
   }, [axiosConfig]);
 
+  const refetchMyEvents = async () => {
+    try {
+      const events = await axiosConfig.get("/api/v1/events/getEventByUser?fields=title,eventDate,eventPhoto");
+      setMyEvents(events.data.data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const fetchSuggetions = async (query, fields = "") => {
     try {
       const events = await axiosConfig.get(
@@ -96,8 +105,8 @@ const MyEvents = () => {
           customLoading={<>Loading...</>}
           onSelect={handleOnSelect}
           onChange={handleOnChange}
-          onBlur={(e) => {}}
-          onFocus={(e) => {}}
+          onBlur={(_) => { }}
+          onFocus={(_) => { }}
         />
 
         <Link
@@ -127,6 +136,7 @@ const MyEvents = () => {
               isButtonVisible={false}
               isEditable={true}
               event={event}
+              refetchMyEvents={refetchMyEvents}
             ></EventCard>
           ))
         ) : (

@@ -2,11 +2,21 @@ import { IoMdMore } from "react-icons/io";
 import { MdEditSquare } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 import "./EventCardMoreModal.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import SuccessNotification from "../SuccessNotification/SuccessNotification";
+import ErrorNotification from "../ErrorNotification/ErrorNotification";
 
-const EventCardMoreModal = ({ openMoreModal, setOpenMoreModal, moreModalRef, eventId }) => {
+const EventCardMoreModal = ({ openMoreModal, setOpenMoreModal, moreModalRef, eventId, refetchMyEvents }) => {
   const [position, setPosition] = useState({});
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+
+  const confirmationRef = useRef(null);
 
   useEffect(() => {
     const adjustPosition = () => {
@@ -43,8 +53,33 @@ const EventCardMoreModal = ({ openMoreModal, setOpenMoreModal, moreModalRef, eve
     }
   }, [openMoreModal, moreModalRef]);
 
+  const handleConfirmationModalOpen = () => {
+    setOpenConfirmationModal(true);
+    setOpenMoreModal(false);
+  }
+
   return (
     <div ref={moreModalRef}>
+      {
+        openConfirmationModal && <ConfirmationModal
+          confirmationRef={confirmationRef}
+          setOpenConfirmationModal={setOpenConfirmationModal}
+          eventId={eventId}
+          setError={setError}
+          setMessage={setMessage}
+          setShowErrorMessage={setShowErrorMessage}
+          setShowSuccessMessage={setShowSuccessMessage}
+          refetchMyEvents={refetchMyEvents}
+        />
+      }
+
+      {
+        (error && showErrorMessage) && <ErrorNotification error={error} setError={setError} setOpen={setShowErrorMessage} />
+      }
+
+      {
+        (message && showSuccessMessage) && <SuccessNotification message={message} setMessage={setMessage} setOpen={setShowSuccessMessage} />
+      }
       <button
         onClick={() => setOpenMoreModal(!openMoreModal)}
         className="w-[1.8em] h-[1.8em] rounded-full flex justify-center items-center hover:bg-gray-200"
@@ -60,7 +95,7 @@ const EventCardMoreModal = ({ openMoreModal, setOpenMoreModal, moreModalRef, eve
               <span className="font-medium">Edit This Event</span>
             </Link>
 
-            <button className="flex justify-start items-center mt-2 rounded-xl delete-btn">
+            <button className="flex justify-start items-center mt-2 rounded-xl delete-btn" onClick={handleConfirmationModalOpen}>
               <AiFillDelete className="text-3xl mr-2" />
               <span className="font-medium">Delete This Event</span>
             </button>

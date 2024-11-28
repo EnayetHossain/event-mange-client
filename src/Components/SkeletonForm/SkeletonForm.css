@@ -1,0 +1,41 @@
+.input-wrapper {
+  box-shadow: 5px 5px 20px rgba(var(--secondary-color), 0.25);
+  border-radius: 2rem;
+  margin: 5rem 0;
+  padding: 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.label {
+  width: 7em;
+  height: 1em;
+  animation: skeleton-loading 1s linear infinite alternate 0.2s;
+}
+
+.icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.09em;
+  margin-top: 0.3em;
+  animation: skeleton-loading 1s linear infinite alternate 0.2s;
+}
+
+.input-box {
+  width: 20em;
+  height: 1em;
+  margin-left: 1em;
+  animation: skeleton-loading 1s linear infinite alternate 0.2s;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: rgb(var(--secondary-color), 0.1);
+  }
+
+  100% {
+    background-color: rgba(var(--secondary-color), 0);
+  }
+}

@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute.jsx";
 import Favorties from "../pages/Profile/Favorites/Favorites";
 import CreateEvent from "../pages/CreateEvent/CreateEvent";
 import EditEvent from "../pages/EditEvent/EditEvent";
+import EventDetails from "../pages/EventDetails/EventDetails";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ export const router = createBrowserRouter([
       {
         path: "/edit-event/:id",
         element: <PrivateRoute><EditEvent></EditEvent></PrivateRoute>
+      },
+
+      {
+        path: "/event-details/:id",
+        element: <EventDetails />
       },
 
       {

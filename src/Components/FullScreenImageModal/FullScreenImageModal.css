@@ -1,0 +1,8 @@
+.full-screen-image {
+  background-color: rgba(var(--secondary-color), 0.3);
+}
+
+.full-screen-image-container {
+  width: min(80em, 100%);
+  height: 90dvh;
+}

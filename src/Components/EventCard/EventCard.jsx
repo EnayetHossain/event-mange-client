@@ -11,7 +11,7 @@ import SuccessNotification from "../SuccessNotification/SuccessNotification";
 import EventCardMoreModal from "../EventCardMoreModal/EventCardMoreModal";
 import useClickOutside from "../../Hooks/useClickOutside";
 
-const EventCard = ({ isButtonVisible, event, isEditable }) => {
+const EventCard = ({ isButtonVisible, event, isEditable, refetchMyEvents }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [error, setError] = useState("");
   const [showSuccessNotificaion, setShowSuccessNotification] = useState(false);
@@ -92,7 +92,7 @@ const EventCard = ({ isButtonVisible, event, isEditable }) => {
         )
       }
       <Link
-        to={"/profile/my-events/id"}
+        to={`/event-details/${event._id}`}
         className="rounded-2xl overflow-hidden mb-7 inline-block no-underline h-[13.7em] w-full bg-gray-300"
       >
         <img
@@ -104,7 +104,7 @@ const EventCard = ({ isButtonVisible, event, isEditable }) => {
 
       <div>
         <Link
-          to={"/profile/my-events/id"}
+          to={`/event-details/${event._id}`}
           className="font-semibold mb-5 inline-block no-underline text-secondary-color"
         >
           {SliceText(event.title, 53)}
@@ -119,6 +119,7 @@ const EventCard = ({ isButtonVisible, event, isEditable }) => {
                 setOpenMoreModal={setOpenMoreModal}
                 moreModalRef={moreModalRef}
                 eventId={event._id}
+                refetchMyEvents={refetchMyEvents}
               />
             )
           }
