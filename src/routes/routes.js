@@ -13,6 +13,7 @@ import Favorties from "../pages/Profile/Favorites/Favorites";
 import CreateEvent from "../pages/CreateEvent/CreateEvent";
 import EditEvent from "../pages/EditEvent/EditEvent";
 import EventDetails from "../pages/EventDetails/EventDetails";
+import Checkout from "../pages/Checkout/Checkout";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,11 @@ export const router = createBrowserRouter([
       {
         path: "/event-details/:id",
         element: <EventDetails />
+      },
+
+      {
+        path: "/checkout/:id",
+        element: <Checkout />
       },
 
       {

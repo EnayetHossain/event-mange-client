@@ -12,7 +12,30 @@
 .event-details-image-container>img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+}
+
+.ticket-number {
+  border: 1px solid rgba(var(--secondary-color), 0.2)
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.2rem;
+  height: 0.2rem;
+  background-color: rgba(var(--secondary-color));
+}
+
+.separator::before {
+  left: -75%;
+}
+
+.separator::after {
+  right: -75%;
 }
 
 @media only screen and (max-width: 979px) {

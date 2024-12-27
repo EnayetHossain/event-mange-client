@@ -1,0 +1,98 @@
+import { useEffect, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+import ErrorNotification from "../../Components/ErrorNotification/ErrorNotification";
+import useAxiosConfig from "../../Hooks/useAxiosConfig";
+import { FaCcMastercard } from "react-icons/fa";
+import { FaCcVisa } from "react-icons/fa6";
+
+const Checkout = () => {
+  const [searchParams] = useSearchParams();
+  const { id } = useParams();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showErrorNotification, setShowErrorNotification] = useState(false);
+  const [numberOfTickets, setNumberOfTickets] = useState(parseInt(searchParams.get("numberOfTickets")))
+  const [eventData, setEventData] = useState({});
+  const axiosConfig = useAxiosConfig();
+
+  useEffect(() => {
+    const getEventDataById = async () => {
+      try {
+        setLoading(true);
+        const response = await axiosConfig.get(`/api/v1/events/${id}?fields=-createdAt,-isActive,-isFeatured,-updatedAt,-__v`);
+        setEventData(response.data.data);
+        setLoading(false);
+        setShowErrorNotification(false);
+      } catch (error) {
+        setLoading(false);
+        setShowErrorNotification(true);
+        setError(error.response.data.error)
+        console.log(error);
+      }
+    }
+
+    getEventDataById();
+  }, [])
+
+  return (
+    <div className="bg-primary-800 py-10">
+      {
+        (error && showErrorNotification) && <ErrorNotification error={error} setError={setError} setOpen={setShowErrorNotification} />
+      }
+      {
+        loading
+          ?
+          <div>loading...</div>
+          :
+          <div className="bg-primary-color max-w-screen-xl mx-auto rounded-2xl px-5 py-8">
+            <div>
+              <h1 className="text-4xl font-semibold mb-7">Payment Method</h1>
+              <div>
+                <h2 className="font-medium mb-3">Payment</h2>
+                <div className="bg-primary-800 p-5 rounded-2xl text-center">
+                  <div className="font-medium">Your total payment</div>
+                  <div className="text-5xl font-bold mt-4">USD {numberOfTickets * eventData.ticketPrice}</div>
+                </div>
+              </div>
+
+              <div>
+                <h2 className="font-medium mt-6">Select Method</h2>
+                <div className="flex justify-between items-center">
+                  <div className="flex">
+                    <input type="radio" name="payment" />
+                    <div className="ml-4">Credit Card</div>
+                  </div>
+
+                  <div className="flex">
+                    <FaCcMastercard className="text-4xl mx-2" />
+                    <FaCcVisa className="text-4xl mx-2" />
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <div className="flex">
+                    <input type="radio" name="payment" />
+                    <div className="ml-4">Mobile Banking</div>
+                  </div>
+
+                  <div className="flex">
+                    <div className="w-14 h-20 overflow-hidden mx-2 bg-red-500">
+                      <img className="w-full h-full object-contain" src={"/images/bkash.png"} alt="icon" />
+                    </div>
+
+                    <div className="w-14 h-20 overflow-hidden mx-2">
+                      <img className="w-full h-full object-contain" src={"/images/nogod.png"} alt="icon" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div></div>
+          </div>
+      }
+    </div>
+  )
+}
+
+export default Checkout;

@@ -10,6 +10,7 @@
 
 :root {
   --primary-color: 255, 255, 255;
+  --primary-800: 235, 236, 237;
   --secondary-color: 0, 0, 0;
   --secondary-800: 46, 46, 46;
   --accent-color: 79, 54, 234;
@@ -40,7 +41,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.accent-font{
+.accent-font {
   font-family: "Aclonica", sans-serif;
 }
 
@@ -84,6 +85,6 @@ img {
   @apply text-red-500 bg-red-500 bg-opacity-20 py-6 px-5 border-2 border-red-500 inline-block w-full rounded-3xl;
 }
 
-.sidebar-links{
+.sidebar-links {
   @apply flex justify-between items-center w-full rounded-[2em] px-4 py-2 my-5
 }

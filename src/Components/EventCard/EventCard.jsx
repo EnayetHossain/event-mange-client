@@ -112,7 +112,6 @@ const EventCard = ({ isButtonVisible, event, isEditable, refetchMyEvents }) => {
         <div className="flex justify-between items-center">
           <p className="date">{FormatDate(event.eventDate)}</p>
           {
-            //TODO: add a modal on click on the three dot to delete or edit the event
             isEditable && (
               <EventCardMoreModal
                 openMoreModal={openMoreModal}
@@ -128,9 +127,9 @@ const EventCard = ({ isButtonVisible, event, isEditable, refetchMyEvents }) => {
 
       {isButtonVisible && (
         <div className="flex justify-between items-center">
-          <button className="no-underline bg-accent-color text-primary-color px-5 py-3 mt-4 font-semibold rounded-2xl">
+          <Link to={`/checkout/${event._id}?numberOfTickets=1`} className="no-underline bg-accent-color text-primary-color px-5 py-3 mt-4 font-semibold rounded-2xl">
             Buy ticket
-          </button>
+          </Link>
 
           <div className="cursor-pointer" title="Add to favorite" onClick={() => addToFavorite(event._id)}>
             {
