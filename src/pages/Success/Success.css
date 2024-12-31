@@ -1,0 +1,15 @@
+.payment-success {
+  border: 1px solid rgba(var(--secondary-color), 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 40rem;
+  width: min(58rem, 100%);
+  margin: 2em auto 0;
+}
+
+.payment-icon {
+  background-color: rgba(var(--accent-color), 0.2);
+  padding: 1em;
+}

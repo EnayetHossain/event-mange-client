@@ -268,7 +268,7 @@ const EditEvent = () => {
 								className={`py-5 text-center rounded-2xl text-3xl flex justify-center items-center w-full font-medium ${loading ? "disabled-btn" : "normal-btn cursor-pointer"}`}
 								disabled={loading}
 							>
-								Create Event
+								Update Event
 								<span className="ml-5">
 									<MdEmojiEvents></MdEmojiEvents>
 								</span>

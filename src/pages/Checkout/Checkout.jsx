@@ -7,6 +7,7 @@ import { FaCcVisa } from "react-icons/fa6";
 import "./Checkout.css";
 import { FormatDate } from "../../Utils/FormatDate";
 import SliceText from "../../Utils/SliceText";
+import LoadingSpiner from "../../Components/LoadingSpiner/LoadingSpiner";
 
 const Checkout = () => {
   const [searchParams] = useSearchParams();
@@ -22,7 +23,6 @@ const Checkout = () => {
   const [paymentError, setPaymentError] = useState("");
   const [showPaymentError, setShowPaymentError] = useState(false);
   const [paymentLoading, setPaymentLoading] = useState(false);
-  console.log(paymentType)
 
   const ticketNumberRef = useRef(null);
 
@@ -50,7 +50,6 @@ const Checkout = () => {
         setLoading(false);
         setShowErrorNotification(true);
         setError(error.response.data.error)
-        console.log(error);
       }
     }
 
@@ -75,7 +74,6 @@ const Checkout = () => {
         if (response.data.url) {
           window.location.href = response.data.url
         }
-        console.log(response);
       }
 
       if (paymentType === "ssl") {
@@ -83,7 +81,6 @@ const Checkout = () => {
         if (response.data.url) {
           window.location.href = response.data.url
         }
-        console.log(response)
       }
     } catch (error) {
       console.log(error)
@@ -237,7 +234,17 @@ const Checkout = () => {
                 </div>
               </div>
 
-              <button className="bg-accent-color text-primary-color w-full py-3 rounded-3xl mt-6 font-medium" onClick={handlePayment}>{!paymentLoading ? "Pay Now" : "Loading..."}</button>
+              <button className="bg-accent-color text-primary-color w-full py-3 rounded-3xl mt-6 font-medium" onClick={handlePayment}>
+                {
+                  paymentLoading
+                    ?
+                    <span>
+                      <LoadingSpiner />
+                    </span>
+                    :
+                    <span>Pay Now</span>
+                }
+              </button>
             </div>
           </div>
       }

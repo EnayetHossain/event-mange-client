@@ -4,14 +4,19 @@ import { useEffect, useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { GoClock } from "react-icons/go";
 import { SlLocationPin } from "react-icons/sl";
+import { Link } from "react-router-dom";
+import useAxiosConfig from "../../../Hooks/useAxiosConfig";
 import useCountDown from "../../../Hooks/useCountDown";
+import { FormatDate } from "../../../Utils/FormatDate";
 import "./Featured.css";
 
 const Featured = () => {
+  const [featuredEvent, setFeaturedEvent] = useState(null);
+  const axiosConfig = useAxiosConfig();
+
   const { textDays, textHours, textMinutes, textSeconds, gap } = useCountDown(
-    "December 30, 2024 00:00:00"
+    featuredEvent?.eventDate
   );
-  const [isFeatured, setIsFeatured] = useState(false);
 
   const [countDownValue, setCountDownValue] = useState({
     textDays,
@@ -23,7 +28,7 @@ const Featured = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
-    if (isFeatured) {
+    if (featuredEvent?.isFeatured) {
       const tl = gsap.timeline({ defaults: { ease: "power1.inOut" } });
 
       tl
@@ -51,25 +56,44 @@ const Featured = () => {
         start: "top 70%",
       });
     }
+  }, [featuredEvent]);
+
+  useEffect(() => {
+    if (gap <= 0) return;
 
     const interval = setInterval(() => {
       setCountDownValue({ textDays, textHours, textMinutes, textSeconds });
-
-      if (gap <= 0) {
-        clearInterval(interval);
-      }
     }, 1000);
 
-    setIsFeatured(gap >= 0);
-
     return () => clearInterval(interval);
-  }, [textDays, textHours, textMinutes, textSeconds, gap, isFeatured]);
+  }, [textDays, textHours, textMinutes, textSeconds, gap]);
 
-  // let isFeatured = gap >= 0;
+  useEffect(() => {
+    ; (async () => {
+      try {
+        const response = await axiosConfig.get(`/api/v1/events/featured?fields=_id,title,eventDate,eventLocation,eventPhoto,isFeatured`);
+
+        //check if event is featured or not
+        const now = new Date();
+        const eventStartDate = new Date(response.data.data.eventDate);
+
+        if (eventStartDate < now) {
+          await axiosConfig.patch(`/api/v1/events/featured/${response.data.data._id}`, { isFeatured: false });
+        } else {
+          setFeaturedEvent(response.data.data);
+        }
+      } catch (error) {
+        console.log(error)
+        setFeaturedEvent(null);
+      }
+    })();
+  }, []);
+
+  if (!featuredEvent) return null;
 
   return (
     <section className="desktop-max">
-      {isFeatured && (
+      {featuredEvent.isFeatured && (
         <div className="featured-container">
           <div>
             <div className="flex items-center accent-font">
@@ -78,15 +102,15 @@ const Featured = () => {
             </div>
 
             <h1 className="featured-name font-regular my-6 lg:mt-[4em] lg:mb-12 accent-font">
-              Featured event name
+              {featuredEvent.title}
             </h1>
 
-            <button
-              type="button"
-              className="bg-primary-color text-secondary-color font-semibold py-3 px-7 rounded-full"
+            <Link
+              to={`/checkout/${featuredEvent._id}?numberOfTickets=1`}
+              className="bg-primary-color text-secondary-color font-semibold py-3 px-7 rounded-full no-underline"
             >
               Get Your Tickets
-            </button>
+            </Link>
           </div>
 
           <div className="timer">
@@ -116,19 +140,19 @@ const Featured = () => {
             <div>
               <div className="flex items-center mb-4">
                 <SlLocationPin className="mr-7"></SlLocationPin>
-                <p>Location of the event</p>
+                <p>{featuredEvent.eventLocation}</p>
               </div>
 
               <div className="flex items-center">
                 <GoClock className="mr-7"></GoClock>
-                <p>Time of the event</p>
+                <p>{FormatDate(featuredEvent.eventDate)}</p>
               </div>
             </div>
           </div>
 
           <div className="featured-img">
             <div className="bg-accent-color w-full h-full overlay absolute top-0 left-0 z-20"></div>
-            <img src="/images/background.jpg" alt="featured" />
+            <img src={featuredEvent.eventPhoto} alt="featured" />
           </div>
         </div>
       )}

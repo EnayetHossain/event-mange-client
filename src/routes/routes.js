@@ -14,6 +14,7 @@ import CreateEvent from "../pages/CreateEvent/CreateEvent";
 import EditEvent from "../pages/EditEvent/EditEvent";
 import EventDetails from "../pages/EventDetails/EventDetails";
 import Checkout from "../pages/Checkout/Checkout";
+import Success from "../pages/Success/Success";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +53,11 @@ export const router = createBrowserRouter([
       {
         path: "/checkout/:id",
         element: <Checkout />
+      },
+
+      {
+        path: "/success",
+        element: <Success />
       },
 
       {
